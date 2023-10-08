@@ -3,6 +3,98 @@ body {
   background: #fff !important;
   font-family: 'Poppins', sans-serif;
 }
+
+/* Style the main navigation menu */
+.navbar-nav {
+  display: flex;
+  list-style: none;
+  padding: 0;
+}
+
+.nav-item {
+  margin-right: 15px;
+  position: relative; /* Tambahkan relative positioning untuk item menu utama */
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #ffffff;
+  transition: color 0.3s;
+  padding: 10px 15px;
+  display: block;
+}
+
+.nav-link:hover {
+  color: #ff6600; /* Ganti warna saat dihover */
+}
+
+/* Style the sub-menu */
+.sub-menu {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  z-index: 1;
+  top: 100%; /* Menempatkan sub-menu di bawah item menu utama */
+  left: 0;
+  width: 200px; /* Atur lebar sub-menu sesuai kebutuhan */
+}
+
+.nav-item:hover .sub-menu {
+  display: block; /* Tampilkan sub-menu saat item menu utama dihover */
+}
+
+.sub-menu .nav-item {
+  margin: 0;
+  display: block;
+  width: 100%;
+}
+
+.sub-menu .nav-link {
+  color: #000000;
+  padding: 10px 20px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.sub-menu .nav-link:last-child {
+  border-bottom: none;
+}
+
+.sub-menu .nav-link:hover {
+  background-color: #f5f5f5; /* Ganti warna latar saat dihover */
+}
+
+/* Style the second level sub-menu */
+.sub-menu2 {
+  display: none;
+  position: absolute;
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  z-index: 2;
+  top: 0;
+  left: 100%; /* Menempatkan sub-menu di sebelah kanan sub-menu pertama */
+  width: 200px; /* Atur lebar sub-menu sesuai kebutuhan */
+}
+
+/* Style the triangle icon for the parent menu */
+.parent-sub-menu .toggle-sub-menu {
+  margin-left: 5px; /* Add some spacing between text and icon */
+  font-size: 12px; /* Adjust icon size as needed */
+  transition: transform 0.2s; /* Add a smooth transition effect */
+}
+
+/* Rotate the triangle icon when sub-menu 2 is visible */
+.parent-sub-menu.open .toggle-sub-menu {
+  transform: rotate(90deg);
+}
+
+
+.sub-menu .nav-item:hover .sub-menu2 {
+  display: block; /* Tampilkan sub-menu kedua saat sub-menu pertama dihover */
+}
+
+
 /* CSS untuk mengatur tata letak brand-content */
 .brand-content {
   display: flex; /* Menggunakan flexbox */
@@ -13,7 +105,7 @@ body {
   width: 70px; /* Sesuaikan dengan lebar yang diinginkan */
   height: auto; /* Biarkan tingginya menyesuaikan agar aspek rasio tetap terjaga */
   margin-right: 10px; /* Tambahkan margin kanan agar ada ruang di antara logo dan judul */
-  margin-left: -40px; /* Geser logo ke kiri sebanyak 10px (sesuaikan sesuai kebutuhan) */
+  margin-left: -10px; /* Geser logo ke kiri sebanyak 10px (sesuaikan sesuai kebutuhan) */
 }
 /* CSS untuk mengatur tampilan judul */
 h2 {
@@ -299,18 +391,6 @@ header nav ul.action-menu .nav-item .nav-link {
   }
 }
 
-/* CSS untuk mengatur tampilan sub-menu */
-.sub-menu {
-  display: none;
-  position: absolute;
-  background-color: #fff;
-  z-index: 1;
-}
-
-.nav-item:hover .sub-menu {
-  display: block;
-}
-
 
 .course .box {
   padding: 10px 10px;
@@ -325,4 +405,31 @@ header nav ul.action-menu .nav-item .nav-link {
   font-size: 28px;
   font-weight: 700;
   color: #ffcf88;
+}
+.map-container {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+.map-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+/* Menggunakan font Dancing Script untuk gaya kaligrafi */
+.carousel-caption h5 {
+  font-family: 'Dancing Script', cursive; /* Menggunakan font Dancing Script */
+  font-style: normal;
+  font-size: 80px;
+  font-weight: bold;
+}
+
+.carousel-caption p {
+  font-family: 'Dancing Script', cursive; /* Menggunakan font Dancing Script */
+  font-style: normal;
+  font-size: 30px;
+  font-weight: normal;
 }

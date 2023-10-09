@@ -433,3 +433,101 @@ header nav ul.action-menu .nav-item .nav-link {
   font-size: 30px;
   font-weight: normal;
 }
+
+/* CSS untuk carousel berita */
+#carouselBerita {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+}
+
+.carousel-inner {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.carousel-item {
+  padding: 20px;
+}
+
+.card.box {
+  border: 1px solid gray;
+  border-radius: 10px;
+  transition: transform 0.2s;
+}
+
+.card.box:hover {
+  transform: scale(1.05);
+}
+
+/* Mengatur tinggi carousel */
+#carouselBerita .carousel-inner {
+  max-height: 470px; /* Sesuaikan tinggi sesuai kebutuhan Anda */
+}
+
+/* Media queries untuk responsif */
+@media (max-width: 768px) {
+  /* Atur gaya ketika lebar layar kurang dari atau sama dengan 768px */
+
+  /* Tinggikan carousel untuk menampilkan berita */
+  #tampilanBerita .carousel-inner {
+    max-height: 600px; /* Hapus batasan tinggi */
+    height: auto; /* Sesuaikan tinggi dengan konten */
+  }
+
+  /* Sesuaikan tinggi kartu berita agar setara */
+  .carousel-item .card {
+    height: 100%; /* Set tinggi kartu 100% */
+  }
+
+  /* Atur tinggi gambar pada kartu berita */
+  .carousel-item .card .bg-image img {
+    height: 100%; /* Set tinggi gambar 100% */
+  }
+
+  /* Hilangkan efek hover pada kartu berita */
+  .carousel-item .card.box:hover {
+    transform: none; /* Hapus transformasi pada hover */
+  }
+
+  /* Aktifkan overflow untuk kontainer berita agar bisa di-scroll */
+  .carousel-item.active .row {
+    overflow-y: auto;
+    max-height: unset; /* Hapus batasan tinggi */
+  }
+
+  /* Tambahkan sedikit jarak antara berita */
+  .carousel-item .col-md-4 {
+    margin-bottom: 20px;
+  }
+  
+  /* Tambahkan sedikit padding agar konten berita di bagian pertama bisa digulirkan */
+  .carousel-inner .carousel-item .row {
+    padding-bottom: 20px;
+  }
+}
+/* CSS untuk merapikan tombol "Baca Sekarang" */
+.baca {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.baca .btn-primary {
+  display: inline-block; /* Membuat tombol tampil dalam satu baris dengan teks */
+  margin-top: 10px; /* Menambahkan jarak atas */
+  padding: 8px 16px; /* Memberikan ruang di sekitar teks tombol */
+  background-color: #007bff; /* Warna latar belakang tombol (sesuaikan dengan warna yang Anda inginkan) */
+  color: #fff; /* Warna teks tombol */
+  border: none; /* Menghapus garis batas tombol */
+  border-radius: 4px; /* Membuat sudut tombol agak melengkung */
+  text-decoration: none; /* Menghapus garis bawah default dari tautan */
+  transition: background-color 0.3s ease; /* Efek transisi saat tombol dihover */
+}
+
+.baca .btn-primary:hover {
+  background-color: #0056b3; /* Warna latar belakang saat tombol dihover (sesuaikan dengan warna yang Anda inginkan) */
+}
+
+

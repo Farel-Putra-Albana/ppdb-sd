@@ -48,19 +48,35 @@ include('connect/connection.php');
                 <div class="card">
                     <div class="card-header">Perbarui Password Anda</div>
                     <div class="card-body">
-                        <form action="#" method="POST" name="login">
+                    <form action="#" method="POST" name="login">
+                        <div class="form-group row">
+                            <label for="password" class="col-md-4 col-form-label text-md-right">Password Baru</label>
+                            <div class="col-md-6">
+                                <input type="password" id="password" class="form-control" name="password" autofocus>
+                                <i class="bi bi-eye-slash" id="togglePassword"></i>
+                                <div id="password-error" class="text-danger"></div> <!-- Menampilkan pesan kesalahan -->
+                            </div>
+                        </div>
+                                <script>
+                                    document.getElementById("password").addEventListener("input", function () {
+                                        var password = this.value;
+                                        var togglePassword = document.getElementById("togglePassword");
+                                        
+                                        if (password.length < 6) {
+                                            // Tambahkan pesan kesalahan jika kurang dari 6 karakter
+                                            this.setCustomValidity("Password harus memiliki setidaknya 6 karakter");
+                                            togglePassword.style.display = "none"; // Sembunyikan ikon mata
+                                        } else {
+                                            // Hapus pesan kesalahan jika valid
+                                            this.setCustomValidity("");
+                                            togglePassword.style.display = "block"; // Tampilkan ikon mata
+                                        }
+                                    });
+                                </script>
 
-                            <div class="form-group row">
-                                <label for="password" class="col-md-4 col-form-label text-md-right">Password Baru</label>
-                                <div class="col-md-6">
-                                    <input type="password" id="password" class="form-control" name="password" required autofocus>
-                                    <i class="bi bi-eye-slash" id="togglePassword"></i>
-                                </div>
-                            </div>
-                            <div class="col-md-6 offset-md-4">
-                                <input type="submit" value="Reset" name="reset" class="btn btn-primary">
-                            </div>
-                         </div>
+                        <div class="col-md-6 offset-md-4">
+                            <input type="submit" value="Reset" name="reset" class="btn btn-primary">
+                        </div>
                     </form>
                 </div>
             </div>

@@ -3,7 +3,7 @@
 include('connect/connection.php');
 
 if (isset($_POST["register"])) {
-    $name = $_POST["nama_pendek"];
+    $nama_pendek = $_POST["nama_pendek"];
     $email = $_POST["email"];
     $password = $_POST["password"];
     $nik = $_POST["nik"];
@@ -21,7 +21,7 @@ if (isset($_POST["register"])) {
         } else {
             $password_hash = password_hash($password, PASSWORD_BCRYPT);
 
-            $result = mysqli_query($connect, "INSERT INTO login_siswa (email, nik, nama_siswa, password, status) VALUES ('$email', '$nik', '$name', '$password_hash', 0)");
+            $result = mysqli_query($connect, "INSERT INTO login_siswa (email, nik, nama_pendek, password, status) VALUES ('$email', '$nik', '$nama_pendek', '$password_hash', 0)");
 
             if ($result) {
                 $otp = rand(100000, 999999);
@@ -153,6 +153,24 @@ if (isset($_POST["register"])) {
                                         <i class="bi bi-eye-slash" id="togglePassword" style="position: absolute; right: 20px; top: 50%; transform: translateY(-50%); cursor: pointer;"></i>
                                     </div>
                                 </div>
+
+                                <script>
+                                    document.getElementById("password").addEventListener("input", function () {
+                                        var password = this.value;
+                                        var togglePassword = document.getElementById("togglePassword");
+                                        
+                                        if (password.length < 6) {
+                                            // Tambahkan pesan kesalahan jika kurang dari 6 karakter
+                                            this.setCustomValidity("Password harus memiliki setidaknya 6 karakter");
+                                            togglePassword.style.display = "none"; // Sembunyikan ikon mata
+                                        } else {
+                                            // Hapus pesan kesalahan jika valid
+                                            this.setCustomValidity("");
+                                            togglePassword.style.display = "block"; // Tampilkan ikon mata
+                                        }
+                                    });
+                                </script>
+
                                 <div class="col-md-6 offset-md-4">
                                     <input type="submit" value="Register" name="register" class="btn btn-primary">
                                 </div>

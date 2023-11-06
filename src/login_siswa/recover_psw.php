@@ -73,7 +73,7 @@
         include('connect/connection.php');
         $email = $_POST["email"];
 
-        $sql = mysqli_query($connect, "SELECT * FROM login WHERE email='$email'");
+        $sql = mysqli_query($connect, "SELECT * FROM login_siswa WHERE email='$email'");
         $query = mysqli_num_rows($sql);
   	    $fetch = mysqli_fetch_assoc($sql);
 
@@ -123,7 +123,7 @@
             $mail->Body="<b>Hai Pengguna PPDB SD Negeri 013 Tanjungpinang Barat</b>
             <h3>Kami menerima permintaan untuk mengatur ulang kata sandi Anda.</h3>
             <p>Silakan klik tautan di bawah ini untuk mengatur ulang kata sandi Anda:</p>
-            http://localhost/coba/reset_psw.php
+            http://localhost/ppdb-sd/src/login_siswa/reset_psw.php
             <br><br>";
 
             if(!$mail->send()){

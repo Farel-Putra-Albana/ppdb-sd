@@ -49,8 +49,9 @@
 
 			// Query untuk mengambil data siswa berdasarkan ID login siswa yang sudah login
 			$sql = $koneksi->query("SELECT * FROM biodata_ayah
-            INNER JOIN biodata_siswa ON biodata_ayah.id_siswa = biodata_siswa.id_siswa
-            WHERE biodata_ayah.id_siswa = $id_login_siswa");
+			INNER JOIN biodata_siswa ON biodata_ayah.id_siswa = biodata_siswa.id_siswa
+			INNER JOIN login_siswa ON biodata_siswa.id_login_siswa = login_siswa.id_login_siswa
+			WHERE login_siswa.id_login_siswa = $id_login_siswa");
 
 			// Query untuk memeriksa apakah biodata siswa sudah diisi
 			$sql_check_biodata = $koneksi->query("SELECT * FROM biodata_siswa WHERE id_login_siswa = $id_login_siswa");

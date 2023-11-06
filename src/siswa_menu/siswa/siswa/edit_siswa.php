@@ -69,8 +69,18 @@ if (isset($_SESSION['ses_id_login_siswa'])) {
 
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">Jenis Kelamin</label>
-				<div class="col-sm-5">
-					<input type="text" class="form-control" id="jk_siswa" name="jk_siswa" value="<?php echo $data_cek['jk_siswa']; ?>" />
+				<div class="col-sm-4">
+					<select name="jk_siswa" id="jk_siswa" class="form-control">
+						<option value="">-- Pilih --</option>
+						<?php
+						//cek data yg dipilih sebelumnya
+						if ($data_cek['jk_siswa'] == "Laki-Laki") echo "<option value='Laki-Laki' selected>Laki-Laki</option>";
+						else echo "<option value='Laki-Laki'>Laki-Laki</option>";
+
+						if ($data_cek['jk_siswa'] == "Perempuan") echo "<option value='Perempuan' selected>Perempuan</option>";
+						else echo "<option value='Perempuan'>Perempuan</option>";
+						?>
+					</select>
 				</div>
 			</div>
 
@@ -98,7 +108,20 @@ if (isset($_SESSION['ses_id_login_siswa'])) {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">Status</label>
 				<div class="col-sm-4">
-				<input type="text" class="form-control" id="status_keluarga" name="status_keluarga" value="<?php echo $data_cek['status_keluarga']; ?>" />
+					<select name="status_keluarga" id="status_keluarga" class="form-control">
+						<option value="">-- Pilih --</option>
+						<?php
+						//cek data yg dipilih sebelumnya
+						if ($data_cek['status_keluarga'] == "Anak Kandung") echo "<option value='Anak Kandung' selected>Anak Kandung</option>";
+						else echo "<option value='Anak Kandung'>Anak Kandung</option>";
+
+						if ($data_cek['status_keluarga'] == "Anak Angkat") echo "<option value='Anak Angkat' selected>Anak Angkat</option>";
+						else echo "<option value='Anak Angkat'>Anak Angkat</option>";
+
+						if ($data_cek['status_keluarga'] == "Lainnya") echo "<option value='Lainnya' selected>Lainnya</option>";
+						else echo "<option value='Lainnya'>Lainnya</option>";
+						?>
+					</select>
 				</div>
 			</div>
 

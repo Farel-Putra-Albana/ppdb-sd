@@ -144,35 +144,46 @@ if (isset($_POST['Ubah'])) {
 			if (file_exists("foto/$foto")) {
 					unlink("foto/$foto");
 			}
+			
+			$nip_guru = mysqli_real_escape_string($koneksi, $_POST['nip_guru']);
+			$nama_guru = mysqli_real_escape_string($koneksi, $_POST['nama_guru']);
+			$tempat_lahir_guru = mysqli_real_escape_string($koneksi, $_POST['tempat_lahir_ayah']);
+			$tgl_lahir_guru = $_POST['tgl_lahir_guru'];
+			$alamat_guru = mysqli_real_escape_string($koneksi, $_POST['alamat_guru']);
+			$jk_guru = mysqli_real_escape_string($koneksi, $_POST['jk_guru']);
+			$no_hp_guru = $_POST['no_hp_guru'];
+			$status_kepegawaian = mysqli_real_escape_string($koneksi, $_POST['status_kepegawaian']);
+			$jurusan_guru = $_POST['jurusan_guru'];
+			$kompetensi_guru = mysqli_real_escape_string($koneksi, $_POST['kompetensi_guru']);
+			
 
 			// Perbarui data guru dengan foto yang baru
 			$sql_ubah = "UPDATE data_guru SET
-					nip_guru='" . $_POST['nip_guru'] . "',
-					nama_guru='" . $_POST['nama_guru'] . "',
-					tempat_lahir_guru='" . $_POST['tempat_lahir_guru'] . "',
-					tgl_lahir_guru='" . $_POST['tgl_lahir_guru'] . "',
-					alamat_guru='" . $_POST['alamat_guru'] . "',
-					jk_guru='" . $_POST['jk_guru'] . "',
-					no_hp_guru='" . $_POST['no_hp_guru'] . "',
-					status_kepegawaian='" . $_POST['status_kepegawaian'] . "',
-					jurusan_guru='" . $_POST['jurusan_guru'] . "',
-					kompetensi_guru='" . $_POST['kompetensi_guru'] . "',
-					foto_guru='" . $nama_file . "'
-					WHERE id_guru='" . $_POST['id_guru'] . "'";
+												nip_guru='$nip_guru',
+												nama_guru='$nama_guru',
+												tempat_lahir_guru='$tempat_lahir_guru',
+                        tgl_lahir_guru='$tgl_lahir_guru',
+                        alamat_guru='$alamat_guru',
+												jk_guru='$jk_guru',
+                        no_hp_guru='$no_hp_guru',
+                        status_kepegawaian='$status_kepegawaian',
+												jurusan_guru='$jurusan_guru',
+                        kompetensi_guru='$kompetensi_guru'
+                    WHERE id_siswa='$id_login_siswa'";
 	} else {
 			// Jika tidak ada file foto yang diunggah, perbarui data guru tanpa mengubah foto
 			$sql_ubah = "UPDATE data_guru SET
-					nip_guru='" . $_POST['nip_guru'] . "',
-					nama_guru='" . $_POST['nama_guru'] . "',
-					tempat_lahir_guru='" . $_POST['tempat_lahir_guru'] . "',
-					tgl_lahir_guru='" . $_POST['tgl_lahir_guru'] . "',
-					alamat_guru='" . $_POST['alamat_guru'] . "',
-					jk_guru='" . $_POST['jk_guru'] . "',
-					no_hp_guru='" . $_POST['no_hp_guru'] . "',
-					status_kepegawaian='" . $_POST['status_kepegawaian'] . "',
-					jurusan_guru='" . $_POST['jurusan_guru'] . "',
-					kompetensi_guru='" . $_POST['kompetensi_guru'] . "'
-					WHERE id_guru='" . $_POST['id_guru'] . "'";
+												nip_guru='$nip_guru',
+												nama_guru='$nama_guru',
+                        alamat_guru='$alamat_guru',
+                        tgl_lahir_guru='$tgl_lahir_guru',
+                        tempat_lahir_guru='$tempat_lahir_guru',
+												jk_guru='$jk_guru',
+                        no_hp_guru='$no_hp_guru',
+                        status_kepegawaian='$status_kepegawaian',
+												jurusan_guru='$jurusan_guru',
+                        kompetensi_guru='$kompetensi_guru'
+                    WHERE id_siswa='$id_login_siswa'";
 	}
 
 	// Eksekusi query UPDATE

@@ -142,7 +142,7 @@ while ($data = $sql->fetch_assoc()) {
 							</li>
 
 							<li class="nav-item">
-								<a href="?page=data-verifikasi" class="nav-link">
+								<a href="?page=proses-verifikasi" class="nav-link">
 									<i class="nav-icon far fa fa-user-clock"></i>
 									<p>
 										Status Verifikasi
@@ -330,44 +330,34 @@ while ($data = $sql->fetch_assoc()) {
 								break;
 
 								//verifikasi
-							case 'data-verifikasi':
-								include "admin/verifikasi/data_verifikasi.php";
+							case 'data-verifikasi-belum':
+								include "admin/verifikasi/data_verifikasi_belum_disetujui.php";
 								break;
-							case 'view-berkas-ktp':
-								include "admin/verifikasi/view_berkas_ktp.php";
+							case 'data-verifikasi-sudah':
+								include "admin/verifikasi/data_verifikasi_sudah_disetujui.php";
 								break;
-							case 'view-berkas-kk':
-								include "admin/verifikasi/view_berkas_kk.php";
+							case 'data-verifikasi-tidak':
+								include "admin/verifikasi/data_verifikasi_tidak_disetujui.php";
 								break;
-							case 'view-berkas-akta':
-								include "admin/verifikasi/view_berkas_akta.php";
+							case 'proses-verifikasi':
+								include "admin/verifikasi/proses_verifikasi.php";
 								break;
-							case 'view-berkas-foto':
-								include "admin/verifikasi/view_berkas_foto.php";
+							case 'view-berkas-belum':
+								include "admin/verifikasi/view_berkas_belum_disetujui.php";
 								break;
-							case 'edit-berkas-ktp':
-								include "admin/verifikasi/edit_berkas_ktp.php";
+							case 'view-berkas-sudah':
+								include "admin/verifikasi/view_berkas_sudah_disetujui.php";
 								break;
-							case 'edit-berkas-kk':
-								include "admin/verifikasi/edit_berkas_kk.php";
-								break;
-							case 'edit-berkas-akta':
-								include "admin/verifikasi/edit_berkas_akta.php";
-								break;
-							case 'edit-berkas-foto':
-								include "admin/verifikasi/edit_berkas_foto.php";
+							case 'view-berkas-tidak':
+								include "admin/verifikasi/view_berkas_tidak_disetujui.php";
 								break;
 							case 'hasil-verifikasi':
 								include "admin/verifikasi/edit_verifikasi.php";
 								break;
+							case 'add-verifikasi':
+								include "admin/verifikasi/add_verifikasi.php";
+								break;
 
-								//Kepegawaian
-							case 'data-kepegawaian':
-								include "admin/kepegawaian/data_kepegawaian.php";
-								break;
-							case 'view-kepegawaian':
-								include "admin/kepegawaian/view_kepegawaian.php";
-								break;
 
 								//Profil
 							case 'data-profil':

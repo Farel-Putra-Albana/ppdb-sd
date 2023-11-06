@@ -104,7 +104,6 @@
 					</div>
 				</div>
 
-
 			</div>
 			<div class="card-footer">
 				<input type="submit" name="Simpan" value="Simpan" class="btn btn-info">
@@ -114,14 +113,12 @@
 	</div>
 
 	<?php
-	$sumber = @$_FILES['foto_guru']['tmp_name'];
-	$target = 'foto/';
-	$nama_file = @$_FILES['foto_guru']['name'];
-	$pindah = move_uploaded_file($sumber, $target . $nama_file);
 
 	if (isset($_POST['Simpan'])) {
-
-
+		$sumber = @$_FILES['foto_guru']['tmp_name'];
+		$target = 'foto/';
+		$nama_file = @$_FILES['foto_guru']['name'];
+		$pindah = move_uploaded_file($sumber, $target . $nama_file);
 		if (!empty($sumber)) {
 			$sql_simpan = "INSERT INTO data_guru (nip_guru, nama_guru, tempat_lahir_guru, tgl_lahir_guru, alamat_guru, jk_guru, no_hp_guru, status_kepegawaian, jurusan_guru, kompetensi_guru, foto_guru) VALUES (
             '" . $_POST['nip_guru'] . "',
@@ -163,5 +160,5 @@
 		})</script>";
 		}
 	}
-  //selesai proses simpan data
+	//selesai proses simpan data
 	?>

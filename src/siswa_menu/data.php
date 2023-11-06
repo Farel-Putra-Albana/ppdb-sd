@@ -233,6 +233,9 @@ include "inc/koneksi.php";
 							case 'view-ayah':
 								include "siswa/siswa/view_ayah.php";
 								break;
+							case 'del-ayah':
+								include "siswa/siswa/del_ayah.php";
+								break;
 							case 'data-ibu':
 								include "siswa/siswa/data_ibu.php";
 								break;
@@ -244,6 +247,14 @@ include "inc/koneksi.php";
 								break;
 							case 'view-ibu':
 								include "siswa/siswa/view_ibu.php";
+								break;
+							case 'del-ibu':
+								include "siswa/siswa/del_ibu.php";
+								break;
+
+								//verifikasi
+							case 'data-verifikasi':
+								include "siswa/berkas/hasil_verifikasi.php";
 								break;
 
 								//berkas

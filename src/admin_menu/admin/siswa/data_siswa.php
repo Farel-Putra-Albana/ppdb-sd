@@ -64,7 +64,7 @@
                                     <?php echo $no++; ?>
                                 </td>
                                 <td align="center">
-                                    <img src="foto/<?php echo $data['pas_foto']; ?>" width="70px" />
+                                    <img src="/ppdb-sd/src/siswa_menu/foto/<?php echo $data['pas_foto']; ?>" width="70px" />
                                 </td>
                                 <td>
                                     <?php echo $data['nik_siswa']; ?>

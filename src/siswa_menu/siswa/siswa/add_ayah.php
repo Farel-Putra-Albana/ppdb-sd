@@ -5,7 +5,9 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Siswa Menu || SDN 013 Tanjungpinang Barat</title>
+</head>
 
+<body>
 	<div class="card card-primary">
 		<div class="card-header">
 			<h3 class="card-title">
@@ -14,7 +16,6 @@
 		</div>
 		<form action="" method="post" enctype="multipart/form-data">
 			<div class="card-body">
-
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label">Nama Ayah</label>
 					<div class="col-sm-5">
@@ -39,7 +40,7 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label">Tanggal Lahir</label>
 					<div class="col-sm-5">
-						<input type="date" class="form-control" id="tanggal_lahir_ayah" name="tanggal_lahir_ayah" placeholder="Masukkan Tanggal Lahir Ayah" required>
+						<input type="date" class="form-control" id="tgl_lahir_ayah" name="tgl_lahir_ayah" placeholder="Masukkan Tanggal Lahir Ayah" required>
 					</div>
 				</div>
 
@@ -60,7 +61,7 @@
 				<div class="form-group row">
 					<label class="col-sm-2 col-form-label">Pendidikan Terakhir Ayah</label>
 					<div class="col-sm-5">
-						<input type="number" class="form-control" id="pend_terakhir_ayah" name="pend_terakhir_ayah" placeholder="Masukkan Pendidikan Terakhir Ayah" required>
+						<input type="text" class="form-control" id="pend_terakhir_ayah" name="pend_terakhir_ayah" placeholder="Masukkan Pendidikan Terakhir Ayah" required>
 					</div>
 				</div>
 
@@ -73,51 +74,72 @@
 	</div>
 
 	<?php
-	$sumber = @$_FILES['foto']['tmp_name'];
-	$target = 'foto/';
-	$nama_file = @$_FILES['foto']['name'];
-	$pindah = move_uploaded_file($sumber, $target . $nama_file);
+	// Lakukan koneksi ke database
+	$koneksi = mysqli_connect("localhost", "root", "", "ppdb_sd13");
 
-	if (isset($_POST['Simpan'])) {
-
-
-		if (!empty($sumber)) {
-			$sql_simpan = "INSERT INTO tb_pegawai (nip, nama, alamat, no_hp, status, jabatan, jenis_golongan, alamat_instansi, foto) VALUES (
-            '" . $_POST['nip'] . "',
-						'" . $_POST['nama'] . "',
-						'" . $_POST['alamat'] . "',
-						'" . $_POST['no_hp'] . "',
-						'" . $_POST['status'] . "',
-						'" . $_POST['jabatan'] . "',
-						'" . $_POST['jenis_golongan'] . "',
-						'" . $_POST['alamat_instansi'] . "',
-            '" . $nama_file . "')";
-			$query_simpan = mysqli_query($koneksi, $sql_simpan);
-			mysqli_close($koneksi);
-
-			if ($query_simpan) {
-				echo "<script>
-      Swal.fire({title: 'Tambah Data Berhasil',text: '',icon: 'success',confirmButtonText: 'OK'
-      }).then((result) => {if (result.value){
-          window.location = 'data.php?page=data-guru';
-          }
-      })</script>";
-			} else {
-				echo "<script>
-      Swal.fire({title: 'Tambah Data Gagal',text: '',icon: 'error',confirmButtonText: 'OK'
-      }).then((result) => {if (result.value){
-          window.location = 'data.php?page=add-guru';
-          }
-      })</script>";
-			}
-		} elseif (empty($sumber)) {
-			echo "<script>
-		Swal.fire({title: 'Gagal, Foto Wajib Diisi',text: '',icon: 'error',confirmButtonText: 'OK'
-		}).then((result) => {
-			if (result.value) {
-				window.location = 'data.php?page=add-guru';
-			}
-		})</script>";
-		}
+	if (!$koneksi) {
+		die("Koneksi ke database gagal: " . mysqli_connect_error());
 	}
-  //selesai proses simpan data
+
+	// Pastikan sesi sudah aktif
+	if (session_status() == PHP_SESSION_NONE) {
+		session_start();
+	}
+
+	if (isset($_SESSION['ses_id_login_siswa'])) {
+		$id_login_siswa = $_SESSION['ses_id_login_siswa'];
+
+		// Query untuk mendapatkan id_siswa berdasarkan id_login_siswa
+		$sql_get_id_siswa = "SELECT id_siswa FROM biodata_siswa WHERE id_login_siswa = '$id_login_siswa'";
+		$query_get_id_siswa = mysqli_query($koneksi, $sql_get_id_siswa);
+
+		if ($query_get_id_siswa && mysqli_num_rows($query_get_id_siswa) > 0) {
+			$row = mysqli_fetch_assoc($query_get_id_siswa);
+			$id_siswa = $row['id_siswa'];
+
+			if (isset($_POST['Simpan'])) {
+				// Ambil data dari formulir
+				$nama_ayah = mysqli_real_escape_string($koneksi, $_POST['nama_ayah']);
+				$tempat_lahir_ayah = mysqli_real_escape_string($koneksi, $_POST['tempat_lahir_ayah']);
+				$tgl_lahir_ayah = mysqli_real_escape_string($koneksi, $_POST['tgl_lahir_ayah']);
+				$alamat_ayah = mysqli_real_escape_string($koneksi, $_POST['alamat_ayah']);
+				$no_hp_ayah = mysqli_real_escape_string($koneksi, $_POST['no_hp_ayah']);
+				$pekerjaan_ayah = mysqli_real_escape_string($koneksi, $_POST['pekerjaan_ayah']);
+				$pend_terakhir_ayah = mysqli_real_escape_string($koneksi, $_POST['pend_terakhir_ayah']);
+
+				// Query untuk memasukkan data ke tabel biodata_ayah
+				$sql_simpan = "INSERT INTO biodata_ayah (id_siswa, nama_ayah, tempat_lahir_ayah, tgl_lahir_ayah, alamat_ayah, no_hp_ayah, pekerjaan_ayah, pend_terakhir_ayah) VALUES ('$id_siswa', '$nama_ayah', '$tempat_lahir_ayah', '$tgl_lahir_ayah', '$alamat_ayah', '$no_hp_ayah', '$pekerjaan_ayah', '$pend_terakhir_ayah')";
+
+				$query_simpan = mysqli_query($koneksi, $sql_simpan);
+
+				if ($query_simpan) {
+					echo "<script>
+                    Swal.fire({title: 'Tambah Data Berhasil', text: '', icon: 'success', confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location = 'data.php?page=data-ayah';
+                        }
+                    })</script>";
+				} else {
+					echo "<script>
+                    Swal.fire({title: 'Tambah Data Gagal', text: '', icon: 'error', confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location = 'data.php?page=add-ayah';
+                        }
+                    })</script>";
+				}
+			}
+		} else {
+			echo 'Tidak dapat menemukan id_siswa berdasarkan id_login_siswa.';
+		}
+	} else {
+		echo 'Anda harus login sebagai siswa terlebih dahulu.';
+		// Atau alihkan ke halaman login jika belum login.
+		// header("Location: login.php");
+	}
+	?>
+
+</body>
+
+</html>

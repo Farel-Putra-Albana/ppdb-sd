@@ -26,7 +26,7 @@
 	<div class="card card-info">
 		<div class="card-header">
 			<h3 class="card-title">
-				<i class="fa fa-table"></i> Berkas
+				<i class="fa fa-table"></i> Hasil Verifikasi Berkas
 			</h3>
 		</div>
 		<?php
@@ -47,13 +47,13 @@
 				die("Koneksi ke database gagal: " . mysqli_connect_error());
 			}
 
-			// Query untuk mengambil data berkas siswa berdasarkan login siswa
-			$sql = $koneksi->query("SELECT * FROM berkas
-														INNER JOIN biodata_siswa ON berkas.id_siswa = biodata_siswa.id_siswa
-														INNER JOIN login_siswa ON biodata_siswa.id_login_siswa = login_siswa.id_login_siswa
-														WHERE login_siswa.id_login_siswa = $id_login_siswa");
+			// Query untuk mengambil data siswa berdasarkan ID login siswa yang sudah login
+			$sql = $koneksi->query("SELECT * FROM hasil_seleksi
+			INNER JOIN biodata_siswa ON hasil_seleksi.id_siswa = biodata_siswa.id_siswa
+			INNER JOIN login_siswa ON biodata_siswa.id_login_siswa = login_siswa.id_login_siswa
+			WHERE login_siswa.id_login_siswa = $id_login_siswa");
 
-			// Query untuk memeriksa apakah ada biodata siswa
+			// Query untuk memeriksa apakah biodata siswa sudah diisi
 			$sql_check_biodata = $koneksi->query("SELECT * FROM biodata_siswa WHERE id_login_siswa = $id_login_siswa");
 
 			if ($sql_check_biodata->num_rows > 0) {
@@ -67,28 +67,24 @@
 							<table id="example1" class="table table-bordered table-striped">
 								<thead class="tabel">
 									<tr class="text-center">
-										<th>Berkas Kartu Keluarga</th>
-										<th>Berkas Akta Lahir</th>
-										<th>Berkas KTP</th>
-										<th>Berkas Pas Foto</th>
+										<th>Tanggal Penerimaan</th>
+										<th>Jalur Penerimaan</th>
+										<th>Status Penerimaan</th>
 									</tr>
 								</thead>
 								<tbody class="text-center">
 									<?php
 									while ($data = $sql->fetch_assoc()) {
 									?>
-										<tr align="center" class="text-center">
-											<td align="center">
-												<img src="foto/<?php echo $data['kartu_keluarga']; ?>" width="250px" height="150px" />
+										<tr>
+											<td>
+												<?php echo $data['tgl_penerimaan']; ?>
 											</td>
-											<td align="center">
-												<img src="foto/<?php echo $data['akta_lahir']; ?>" width="250px" height="150px" />
+											<td>
+												<?php echo $data['jalur_penerimaan']; ?>
 											</td>
-											<td align="center">
-												<img src="foto/<?php echo $data['ktp']; ?>" width="250px" height="150px" />
-											</td>
-											<td align="center">
-												<img src="foto/<?php echo $data['pas_foto']; ?>" width="100px" height="150px" />
+											<td>
+												<?php echo $data['status_penerimaan']; ?>
 											</td>
 										</tr>
 									<?php
@@ -101,20 +97,9 @@
 					<!-- /.card-body -->
 		<?php
 				} else {
-					// Tampilkan tombol "Upload Berkas" jika ada biodata siswa
-					echo '<p align="center">Berkas-Berkas Persyaratan Belum Tersedia <br>Klik Button dibawah ini untuk Upload Berkas</p>';
-					echo '<div class="mb-2" align="center">
-                            <a href="?page=add-berkas" class="btn btn-primary">
-                                <i class="fa fa-upload"></i> Upload Berkas</a>
-                        </div>';
+					// Tampilkan pesan jika tidak ada data yang ditemukan
+					echo '<p style="color: red; font-size: 18px;" align="center">Proses Verifikasi Berkas Sedang Dilakukan<br>Silahkan Cek Berkala Menu Status Verifikasi</p>';
 				}
-			} else {
-				// Tampilkan pesan jika biodata siswa belum diisi
-				echo '<p align="center">Pastikan Anda Mengisi Biodata Siswa pada Menu Biodata Siswa <br></p>';
-				echo '<div class="mb-2" align="center">
-                            <a href="?page=data-siswa" class="btn btn-primary">
-                                <i class="fa fa-edit"></i> Menu Biodata Siswa</a>
-                        </div>';
 			}
 		} else {
 			// Tampilkan pesan atau alihkan ke halaman login jika pengguna belum login

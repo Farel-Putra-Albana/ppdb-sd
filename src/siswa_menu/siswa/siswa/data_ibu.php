@@ -49,8 +49,9 @@
 
 			// Query untuk mengambil data siswa berdasarkan ID login siswa yang sudah login
 			$sql = $koneksi->query("SELECT * FROM biodata_ibu
-            INNER JOIN biodata_siswa ON biodata_ibu.id_siswa = biodata_siswa.id_siswa
-            WHERE biodata_ibu.id_siswa = $id_login_siswa");
+			INNER JOIN biodata_siswa ON biodata_ibu.id_siswa = biodata_siswa.id_siswa
+			INNER JOIN login_siswa ON biodata_siswa.id_login_siswa = login_siswa.id_login_siswa
+			WHERE login_siswa.id_login_siswa = $id_login_siswa");
 
 			// Query untuk memeriksa apakah biodata siswa sudah diisi
 			$sql_check_biodata = $koneksi->query("SELECT * FROM biodata_siswa WHERE id_login_siswa = $id_login_siswa");
@@ -118,7 +119,7 @@
 					if ($sql_check_biodata->num_rows > 0) {
 						// Tambahkan tombol "Tambah Data" jika biodata siswa sudah diisi
 						echo '<div class="mb-2" align="center">
-                            <a href="?page=add-ayah" class="btn btn-primary">
+                            <a href="?page=add-ibu" class="btn btn-primary">
                                 <i class="fa fa-edit"></i> Tambah Data</a>
                         </div>';
 					} else {

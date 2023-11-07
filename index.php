@@ -32,7 +32,7 @@
   <!-- ======= Header ======= -->
   <header id="header" class="header fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center me-auto me-lg-0">
+      <a href="index.php" class="logo d-flex align-items-center me-auto me-lg-0">
         <img src="assets/img/logo.png" alt="Logo" class="logo-img" />
         <h1 class="m-0 sdn">
           <span class="smkne">SD NE</span>
@@ -67,13 +67,13 @@
             <a href="#"><span>PPDB 2023</span>
               <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li><a href="#">Petunjuk Teknis</a></li>
-              <li><a href="src/login_siswa/register.php">Pendaftaran Ulang</a></li>
-              <li><a href="#">Pengumuman Hasil Seleksi</a></li>
+              <li><a href="src/user/petunjuk_teknis.php">Petunjuk Teknis</a></li>
+              <li><a href="src/login_siswa/index.php">Pendaftaran Ulang</a></li>
+              <li><a href="src/user/hasil_seleksi.php">Pengumuman Hasil Seleksi</a></li>
             </ul>
           </li>
           <li><a href="#berita">Berita</a></li>
-          <li><a href="#">Informasi Resmi</a></li>
+          <li><a href="#footer">Informasi Resmi</a></li>
           <li><a href="src/admin_menu/login.php">Admin Menu</a></li>
         </ul>
       </nav>

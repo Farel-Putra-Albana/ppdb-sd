@@ -11,6 +11,8 @@
 
   <!-- Favicons -->
   <link href="assets/img/logo.png" rel="icon" />
+  <!--=============== REMIXICONS ===============-->
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -26,61 +28,113 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/assets/css/styles.css">
 </head>
 
 <body>
-  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
-    <div class="container d-flex align-items-center justify-content-between">
-      <a href="index.php" class="logo d-flex align-items-center me-auto me-lg-0">
-        <img src="assets/img/logo.png" alt="Logo" class="logo-img" />
-        <h1 class="m-0 sdn">
-          <span class="smkne">SD NE</span>
-          <span class="geri">GERI 013</span>
-          <br />
-          <span class="tanjung">TANJUNG</span>
-          <span class="pinang">PINANG</span>
-          <span class="barat">BARAT</span>
-        </h1>
-      </a>
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="#hero">Home</a></li>
-          <li class="dropdown">
-            <a href="#"><span>Profil</span>
-              <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="#profil-sekolah">Visi dan Misi</a></li>
-              <li><a href="#tata-tertib">Tata Tertib</a></li>
-              <li class="dropdown">
-                <a href="#"><span>Sumberdaya</span>
-                  <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-                <ul>
-                  <li><a href="#kepala-sekolah">Data Kepala Sekolah</a></li>
-                  <li><a href="#data-guru">Data Guru</a></li>
-                  <li><a href="#fasilitas">Fasilitas Sekolah</a></li>
+  <!--=============== HEADER ===============-->
+  <header class="header">
+    <nav class="nav container">
+      <div class="nav__data">
+        <a href="#" class="nav__logo">
+          <img src="assets/assets/navbar_logo.png" alt="navbar_logo">
+        </a>
+
+        <div class="nav__toggle" id="nav-toggle">
+          <i class="ri-menu-line nav__burger"></i>
+          <i class="ri-close-line nav__close"></i>
+        </div>
+      </div>
+
+      <!--=============== NAV MENU ===============-->
+      <div class="nav__menu" id="nav-menu">
+        <ul class="nav__list">
+          <li><a href="index.php" class="nav__link ri-home-5-line">Home</a></li>
+
+          <!--=============== DROPDOWN 1 ===============-->
+          <li class="dropdown__item">
+            <div class="nav__link ri-profile-line">
+              Profil <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+            </div>
+
+            <ul class="dropdown__menu">
+              <li>
+                <a href="#profil-sekolah" class="dropdown__link">
+                  <i class="ri-pie-chart-line"></i> Visi Misi
+                </a>
+              </li>
+
+              <li>
+                <a href="#tata-tertib" class="dropdown__link">
+                  <i class="ri-pushpin-2-line"></i> Tata Tertib
+                </a>
+              </li>
+
+              <!--=============== DROPDOWN SUBMENU ===============-->
+              <li class="dropdown__subitem">
+                <div class="dropdown__link">
+                  <i class="ri-bar-chart-line"></i> Sumberdaya <i class="ri-add-line dropdown__add"></i>
+                </div>
+
+                <ul class="dropdown__submenu">
+                  <li>
+                    <a href="#kepala-sekolah" class="dropdown__sublink">
+                      <i class="ri-user-line"></i> Data Kepala Sekolah
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#data-guru" class="dropdown__sublink">
+                      <i class="ri-team-line"></i> Data Guru
+                    </a>
+                  </li>
+
+                  <li>
+                    <a href="#fasilitas" class="dropdown__sublink">
+                      <i class="ri-building-2-line"></i> Fasilitas Sekolah
+                    </a>
+                  </li>
                 </ul>
               </li>
             </ul>
           </li>
-          <li class="dropdown">
-            <a href="#"><span>PPDB 2023</span>
-              <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-            <ul>
-              <li><a href="src/user/petunjuk_teknis.php">Petunjuk Teknis</a></li>
-              <li><a href="src/login_siswa/index.php">Pendaftaran Ulang</a></li>
-              <li><a href="src/user/hasil_seleksi.php">Pengumuman Hasil Seleksi</a></li>
+
+          <!--=============== DROPDOWN 2 ===============-->
+          <li class="dropdown__item">
+            <div class="nav__link ri-school-line">
+              PPDB 2023 <i class="ri-arrow-down-s-line dropdown__arrow"></i>
+            </div>
+
+            <ul class="dropdown__menu">
+              <li>
+                <a href="src/user/petunjuk_teknis.php" class="dropdown__link">
+                  <i class="ri-search-eye-line"></i> Petunjuk Teknis
+                </a>
+              </li>
+
+              <li>
+                <a href="src/login_siswa/index.php" class="dropdown__link">
+                  <i class="ri-lock-line"></i> Pendaftaran Ulang
+                </a>
+              </li>
+
+              <li>
+                <a href="src/user/hasil_seleksi.php" class="dropdown__link">
+                  <i class="ri-file-search-line"></i> Pengumuman Hasil Seleksi
+                </a>
+              </li>
             </ul>
           </li>
-          <li><a href="#berita">Berita</a></li>
-          <li><a href="#footer">Informasi Resmi</a></li>
-          <li><a href="src/admin_menu/login.php">Admin Menu</a></li>
+
+          <li><a href="#berita" class="nav__link ri-article-line">Berita</a></li>
+
+          <li><a href="#footer" class="nav__link ri-information-line">Informasi Resmi</a></li>
+
+          <li><a href="src/admin_menu/login.php" class="nav__link ri-admin-line">Admin Menu</a></li>
         </ul>
-      </nav>
-      <!-- .navbar -->
-    </div>
+      </div>
+    </nav>
   </header>
-  <!-- End Header -->
 
   <!-- Carousel Start -->
   <div id="header" class="container-fluid p-0 mb-5">
@@ -696,6 +750,8 @@
 
   <!-- Template Main JS File -->
   <script src="assets/js/main.js"></script>
+  <!--=============== MAIN JS ===============-->
+  <script src="assets/assets/js/main.js"></script>
 </body>
 
 </html>

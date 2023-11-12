@@ -62,12 +62,13 @@ body {
 
 /* styles.css */
 .login-form {
-  margin: 70px auto;
-  padding: 50px;
-  background-color: rgba(255, 255, 255, 0.523);
+  margin: 5% auto; /* Adjusted margin to be percentage-based */
+  padding: 5%; /* Adjusted padding to be percentage-based */
+  background-color: rgba(255, 255, 255, 0.8); /* Increased opacity for better readability */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
-  width: 800px;
+  max-width: 800px; /* Used max-width instead of fixed width for responsiveness */
+  width: 100%; /* Ensures the form takes the full width of its container */
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -80,13 +81,13 @@ body {
   color: white;
   font-weight: bold;
   border-radius: 10px 10px 0 0;
-  text-align: center; /* Menengahkan teks dalam card header */
-  padding: 10px 0; /* Menambahkan ruang atas dan bawah */
+  text-align: center;
+  padding: 10px 0;
 }
 
 .login-form .form-group {
-  margin-bottom: 20px; /* Memperbesar jarak antara elemen form-group */
-  text-align: left; /* Menentukan teks ke kiri */
+  margin-bottom: 10px; /* Reduced margin-bottom for a more compact form */
+  text-align: left;
 }
 
 .login-form .form-group:last-child {
@@ -97,21 +98,28 @@ body {
   cursor: pointer;
 }
 
-/* styles.css */
 .login-form .col-md-6 {
   display: flex;
+  flex-direction: column; /* Adjusted flex direction for better alignment on small screens */
   align-items: center;
   justify-content: center;
-
 }
 
 .login-form .col-md-6 .btn {
   width: 100%;
-  margin-top: 15px; /* Menambahkan jarak ke tombol login */
+  margin-top: 10px; /* Adjusted margin-top for better spacing */
 }
 
 .login-form .btn-link {
-  text-align: center; /* Pusatkan tautan "Forgot Your Password?" */
+  text-align: center;
 }
+
+/* Add media query for smaller screens */
+@media (max-width: 576px) {
+  .login-form {
+    margin: 10% auto; /* Adjusted margin for smaller screens */
+  }
+}
+
 
 

@@ -1,56 +1,3 @@
-<?php
-include('connect/connection.php');
-
-if (isset($_POST["login"])) {
-    $nik = mysqli_real_escape_string($connect, trim($_POST['nik']));
-    $password = trim($_POST['password']);
-
-    $sql = mysqli_query($connect, "SELECT * FROM login_siswa where nik = '$nik'");
-    $count = mysqli_num_rows($sql);
-
-    if ($count > 0) {
-        $fetch = mysqli_fetch_assoc($sql);
-        $hashpassword = $fetch["password"];
-
-        if ($fetch["status"] == 0) {
-            ?>
-            <script>
-                alert("Harap Verifikasi Akun Email Sebelum Login.");
-            </script>
-            <?php
-        } else if (password_verify($password, $hashpassword)) {
-            session_start();
-            $_SESSION["ses_id_login_siswa"] = $fetch["id_login_siswa"];
-            $_SESSION["ses_email"] = $fetch["email"];
-            $_SESSION["ses_nama_pendek"] = $fetch["nama_pendek"];
-            $_SESSION["ses_nik"] = $fetch["nik"];
-            $_SESSION["ses_password"] = $fetch["password"];
-            $_SESSION["ses_status"] = $fetch["status"];
-            
-            ?>
-            <script>
-                alert("Login Berhasil! Anda akan dialihkan ke halaman utama.");
-                window.location.href = "/ppdb-sd/src/siswa_menu/data.php";
-            </script>
-            <?php
-        } else {
-            ?>
-            <script>
-                alert("NIK Atau Kata Sandi Tidak Valid, Silakan Coba Lagi.");
-            </script>
-            <?php
-        }
-    }
-}
-?>
-
-
-<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<!------ Include the above in your HEAD tag ---------->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,23 +9,31 @@ if (isset($_POST["login"])) {
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
-    <link rel="stylesheet" href="CSS/index.css?= time();?>">
-
+    <link rel="stylesheet" href="CSS/index.css?= time(); ?>">
     <link href="/assets/img/logo.png" rel="icon" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
+    <!-- Bootstrap JS and Popper.js (jQuery is usually required) -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+
     <title>Login</title>
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
+<nav class="navbar navbar-expand-md navbar-light navbar-laravel">
     <div class="container">
         <a class="navbar-brand" href="#">
             <img src="img/logo.png" alt="Logo" class="logo">
-            Aplikasi SDN 013 Tanjungpinang Barat
+            <span class="d-inline d-md-none">PPDB SD Negeri 013</span>
+            <span class="d-none d-md-inline">Aplikasi SDN 013 Tanjungpinang Barat</span>
         </a>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -88,7 +43,7 @@ if (isset($_POST["login"])) {
                 <li class="nav-item">
                     <a class="nav-link" href="register.php">Registrasi</a>
                 </li>
-                 <li class="nav-item">
+                <li class="nav-item">
                     <a class="nav-link" href="verification.php">Masukkan OTP</a>
                 </li>
             </ul>
@@ -97,7 +52,7 @@ if (isset($_POST["login"])) {
 </nav>
 
 <main class="login-form">
-    <div class="container"> <!-- Perbaikan container -->
+    <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
@@ -120,11 +75,17 @@ if (isset($_POST["login"])) {
                             </div>
 
                             <div class="form-group row">
-                                <div class="col-md-6 offset-md-4">
-                                    <input type="submit" value="Login" name="login" class="btn btn-primary"> <!-- Menambahkan class "btn btn-primary" -->
-                                    <a href="recover_psw.php" class="btn btn-link" style="text-decoration: none;">Dapatkan Password Baru?</a>
+                                <div class="col-md-6 offset-md-3">
+                                    <input type="submit" value="Login" name="login" class="btn btn-primary btn-block">
+                                    
                                 </div>
                             </div>
+                            <div class="form-group row">
+                                <div class="col-md-6 offset-md-3">
+                                    <a href="register.php" class="btn btn-primary btn-block" style="text-decoration: none;">Register</a>
+                                </div>
+                            </div>
+                            <a href="recover_psw.php" class="btn btn-link btn-block" style="text-decoration: none;">Dapatkan Password Baru?</a>
                         </form>
                     </div>
                 </div>
@@ -132,8 +93,7 @@ if (isset($_POST["login"])) {
         </div>
     </div>
 </main>
-</body>
-</html>
+
 <script>
     const toggle = document.getElementById('togglePassword');
     const password = document.getElementById('password');
@@ -147,3 +107,5 @@ if (isset($_POST["login"])) {
     });
 </script>
 
+</body>
+</html>

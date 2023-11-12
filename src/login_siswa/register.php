@@ -88,13 +88,13 @@ if (isset($_POST["register"])) {
 
     <link rel="stylesheet" href="CSS/register.css?=time();?>">
 
-    <link href="/assets/img/logo.png" rel="icon" />
+    <link href="../login_siswa/dist/img/logo.png" rel="icon"/>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <title>Regitrasi</title>
+    <title>Regitrasi || PPDB 013</title>
 
 </head>
 

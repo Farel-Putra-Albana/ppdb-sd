@@ -19,7 +19,7 @@ include('connect/connection.php');
 
     <link rel="stylesheet" href="css/resetpw.css?=time();?>">
 
-    <link href="/assets/img/logo.png" rel="icon" />
+    <link href="../login_siswa/dist/img/logo.png" rel="icon"/>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -27,7 +27,7 @@ include('connect/connection.php');
 
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
-    <title>Perbarui Password</title>
+    <title>Perbarui Password || PPDB 013</title>
 </head>
 <body>
 

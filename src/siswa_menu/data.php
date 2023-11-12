@@ -67,7 +67,7 @@ include "inc/koneksi.php";
 			<ul class="navbar-nav ml-auto">
 
 				<li class="nav-item d-none d-sm-inline-block">
-					<a href="index.php" class="nav-link">
+					<a href="#" class="nav-link">
 						<font color="white">
 							<b>
 								MENU SISWA

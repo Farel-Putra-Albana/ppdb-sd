@@ -23,7 +23,7 @@ if (isset($_GET['kode'])) {
 								<?php
 								// Cek data yang dipilih sebelumnya
 								$selectedJalur = $data_cek['jalur_penerimaan'];
-								$jalurOptions = ["Zonasi", "Afirmasi", "Perpindahan Orangtua"];
+								$jalurOptions = ["Zonasi", "Afirmasi", "Perpindahan Orangtua","-"];
 								foreach ($jalurOptions as $jalur) {
 									$selected = ($selectedJalur === $jalur) ? 'selected' : '';
 									echo "<option value='$jalur' $selected>$jalur</option>";

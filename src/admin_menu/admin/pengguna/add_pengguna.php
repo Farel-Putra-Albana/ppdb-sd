@@ -33,8 +33,6 @@
 					<select name="level" id="level" class="form-control">
 						<option>- Pilih -</option>
 						<option>Administrator</option>
-						<option>Sekretaris</option>
-						<option>Pegawai</option>
 					</select>
 				</div>
 			</div>
@@ -55,7 +53,7 @@ if (isset($_POST['Simpan'])) {
     $password = md5($_POST['password']); // Replace password_hash() with MD5 for demonstration purposes only, NOT RECOMMENDED for security
     $level = $_POST['level'];
 
-    $sql_simpan = "INSERT INTO tb_pengguna (nama_pengguna, username, password, level) VALUES (
+    $sql_simpan = "INSERT INTO login_admin (nama_pengguna, username, password, level) VALUES (
         '$nama_pengguna',
         '$username',
         '$password',

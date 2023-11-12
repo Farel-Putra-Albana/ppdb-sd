@@ -25,7 +25,7 @@
 
 					<?php
               $no = 1;
-              $sql = $koneksi->query("select * from tb_pengguna");
+              $sql = $koneksi->query("select * from login_admin");
               while ($data= $sql->fetch_assoc()) {
             ?>
 

@@ -1,73 +1,61 @@
 <?php
 
-    if(isset($_GET['kode'])){
-        $sql_cek = "SELECT * FROM tb_pengguna WHERE id_pengguna='".$_GET['kode']."'";
-        $query_cek = mysqli_query($koneksi, $sql_cek);
-        $data_cek = mysqli_fetch_array($query_cek,MYSQLI_BOTH);
-    }
+if (isset($_GET['kode'])) {
+    $sql_cek = "SELECT * FROM login_admin WHERE id_pengguna='" . $_GET['kode'] . "'";
+    $query_cek = mysqli_query($koneksi, $sql_cek);
+    $data_cek = mysqli_fetch_array($query_cek, MYSQLI_BOTH);
+}
 ?>
 
 <div class="card card-success">
-	<div class="card-header">
-		<h3 class="card-title">
-			<i class="fa fa-edit"></i> Ubah Data</h3>
-	</div>
-	<form action="" method="post" enctype="multipart/form-data">
-		<div class="card-body">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fa fa-edit"></i> Ubah Data
+        </h3>
+    </div>
+    <form action="" method="post" enctype="multipart/form-data">
+        <div class="card-body">
 
-			<input type='hidden' class="form-control" name="id_pengguna" value="<?php echo $data_cek['id_pengguna']; ?>"
-			 readonly/>
+            <input type='hidden' class="form-control" name="id_pengguna" value="<?php echo $data_cek['id_pengguna']; ?>" readonly />
 
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Nama User</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="nama_pengguna" name="nama_pengguna" value="<?php echo $data_cek['nama_pengguna']; ?>"
-					/>
-				</div>
-			</div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Nama User</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="nama_pengguna" name="nama_pengguna" value="<?php echo $data_cek['nama_pengguna']; ?>" />
+                </div>
+            </div>
 
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Username</label>
-				<div class="col-sm-6">
-					<input type="text" class="form-control" id="username" name="username" value="<?php echo $data_cek['username']; ?>"
-					/>
-				</div>
-			</div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Username</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" id="username" name="username" value="<?php echo $data_cek['username']; ?>" />
+                </div>
+            </div>
 
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Password</label>
-				<div class="col-sm-6">
-					<input type="password" class="form-control" id="pass" name="password" value="<?php echo $data_cek['password']; ?>"
-					/>
-				</div>
-			</div>
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-6">
+                    <input type="password" class="form-control" id="pass" name="password" value="<?php echo $data_cek['password']; ?>" />
+                </div>
+            </div>
 
-			<div class="form-group row">
-				<label class="col-sm-2 col-form-label">Level</label>
-				<div class="col-sm-4">
-					<select name="level" id="level" class="form-control">
-						<option value="">-- Pilih Level --</option>
-						<?php
-                //menhecek data yg dipilih sebelumnya
-                if ($data_cek['level'] == "Administrator") echo "<option value='Administrator' selected>Administrator</option>";
-                else echo "<option value='Administrator'>Administrator</option>";
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Level</label>
+                <div class="col-sm-4">
+                    <select name="level" id="level" class="form-control">
+                        <option value="">-- Pilih Level --</option>
+                        <option value="Administrator" <?php echo ($data_cek['level'] == "Administrator") ? "selected" : ""; ?>>Administrator</option>
+                    </select>
 
-                if ($data_cek['level'] == "Sekretaris") echo "<option value='Sekretaris' selected>Sekretaris</option>";
-                else echo "<option value='Sekretaris'>Sekretaris</option>";
+                </div>
+            </div>
 
-                if ($data_cek['level'] == "Pegawai") echo "<option value='Pegawai' selected>Pegawai</option>";
-                else echo "<option value='Pegawai'>Pegawai</option>";
-            ?>
-					</select>
-				</div>
-			</div>
-
-		</div>
-		<div class="card-footer">
-			<input type="submit" name="Ubah" value="Simpan" class="btn btn-success">
-			<a href="?page=data-pengguna" title="Kembali" class="btn btn-secondary">Batal</a>
-		</div>
-	</form>
+        </div>
+        <div class="card-footer">
+            <input type="submit" name="Ubah" value="Simpan" class="btn btn-success">
+            <a href="?page=data-pengguna" title="Kembali" class="btn btn-secondary">Batal</a>
+        </div>
+    </form>
 </div>
 
 
@@ -80,7 +68,7 @@ if (isset($_POST['Ubah'])) {
     $password = md5($_POST['password']); // Replace password_hash() with MD5 for demonstration purposes only, NOT RECOMMENDED for security
     $level = $_POST['level'];
 
-    $sql_ubah = "UPDATE tb_pengguna SET
+    $sql_ubah = "UPDATE login_admin SET
         nama_pengguna='$nama_pengguna',
         username='$username',
         password='$password',

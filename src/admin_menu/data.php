@@ -66,7 +66,7 @@ while ($data = $sql->fetch_assoc()) {
 			<ul class="navbar-nav ml-auto">
 
 				<li class="nav-item d-none d-sm-inline-block">
-					<a href="index.php" class="nav-link">
+					<a href="#" class="nav-link">
 						<font color="white">
 							<b>
 								ADMIN MENU
@@ -369,17 +369,15 @@ while ($data = $sql->fetch_assoc()) {
 
 								//default
 							default:
-								echo "<center><h1> ERROR !</h1></center>";
+								echo "<center><h1> 404 not Found ! <br> The Website is Under Construction <br> MAINTENANCE in 1 Week <br> <br> See You... </h1></center>";
 								break;
 						}
 					} else {
 						//Halaman Home Pengguna
 						if ($data_level == "Administrator") {
 							include "home/admin.php";
-						} elseif ($data_level == "Sekretaris") {
-							include "home/sekretaris.php";
-						} elseif ($data_level == "Pegawai") {
-							include "home/pegawai.php";
+						} elseif ($data_level == "Guru") {
+							include "home/guru.php";
 						}
 					}
 					?>

@@ -31,7 +31,7 @@ if ($id_siswa != '') {
 		}
 
 		$sql_tampil = "SELECT biodata_siswa.*, berkas.pas_foto FROM biodata_siswa
-            INNER JOIN berkas ON biodata_siswa.id_siswa = berkas.id_siswa WHERE biodata_siswa.id_siswa='" . $id_siswa . "'";
+            LEFT JOIN berkas ON biodata_siswa.id_siswa = berkas.id_siswa WHERE biodata_siswa.id_siswa='" . $id_siswa . "'";
 		$query_tampil = mysqli_query($koneksi, $sql_tampil);
 		$no = 1;
 		while ($data = mysqli_fetch_array($query_tampil, MYSQLI_BOTH)) {

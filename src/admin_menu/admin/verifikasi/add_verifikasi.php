@@ -62,7 +62,7 @@ if (isset($_GET['id_siswa'])) {
                             <select name="jalur_penerimaan" id="jalur_penerimaan" class="form-control">
                                 <option value="">-- Pilih --</option>
                                 <?php
-                                $jalurOptions = ["Zonasi", "Afirmasi", "Perpindahan Orangtua"];
+                                $jalurOptions = ["Zonasi", "Afirmasi", "Perpindahan Orangtua","-"];
                                 foreach ($jalurOptions as $jalur) {
                                     echo "<option value='$jalur'>$jalur</option>";
                                 }

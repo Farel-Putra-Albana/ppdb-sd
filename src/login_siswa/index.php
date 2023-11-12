@@ -1,3 +1,48 @@
+<?php
+include('connect/connection.php');
+
+if (isset($_POST["login"])) {
+    $nik = mysqli_real_escape_string($connect, trim($_POST['nik']));
+    $password = trim($_POST['password']);
+
+    $sql = mysqli_query($connect, "SELECT * FROM login_siswa where nik = '$nik'");
+    $count = mysqli_num_rows($sql);
+
+    if ($count > 0) {
+        $fetch = mysqli_fetch_assoc($sql);
+        $hashpassword = $fetch["password"];
+
+        if ($fetch["status"] == 0) {
+            ?>
+            <script>
+                alert("Harap Verifikasi Akun Email Sebelum Login.");
+            </script>
+            <?php
+        } else if (password_verify($password, $hashpassword)) {
+            session_start();
+            $_SESSION["ses_id_login_siswa"] = $fetch["id_login_siswa"];
+            $_SESSION["ses_email"] = $fetch["email"];
+            $_SESSION["ses_nama_pendek"] = $fetch["nama_pendek"];
+            $_SESSION["ses_nik"] = $fetch["nik"];
+            $_SESSION["ses_password"] = $fetch["password"];
+            $_SESSION["ses_status"] = $fetch["status"];
+            
+            ?>
+            <script>
+                alert("Login Berhasil! Anda akan dialihkan ke halaman utama.");
+                window.location.href = "/ppdb-sd/src/siswa_menu/data.php";
+            </script>
+            <?php
+        } else {
+            ?>
+            <script>
+                alert("NIK Atau Kata Sandi Tidak Valid, Silakan Coba Lagi.");
+            </script>
+            <?php
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

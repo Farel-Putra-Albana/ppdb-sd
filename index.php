@@ -341,7 +341,8 @@
               <h3 align="center"><strong>Kata Pengantar Kepala Sekolah</strong></h3>
               <p align="center">
                 Terwujudnya peserta didik yang berakhlak mulia, kreatif,
-                sehat, cerdas, berwawasan dan berprofil pelajar pancasila
+                sehat, cerdas, berwawasan dan berprofil pelajar pancasila <br>
+              <h6 class="text-center">- Marunah <span style="color: red;">Kepala Sekolah SDN 013 TPI Barat</span> -</h6>
               </p>
             </div>
           </div>
@@ -355,8 +356,8 @@
       <div class="container" data-aos="fade-up">
         <div class="section-header">
           <hr id="berita" style="border: 1px solid red; width: 1px; height: 100px; margin: 0 auto;">
-          <h2 class="mt-2">BERITA</h2>
-          <p>What Are They <span>Saying About Us</span></p>
+          <h2 class="mt-2">BERITA SDN 013 TANJUNGPINANG BARAT</h2>
+          <p>Berita Utama</p>
         </div>
 
         <div class="slides-1 swiper" data-aos="fade-up" data-aos-delay="100">
@@ -366,23 +367,21 @@
                 <div class="row gy-4 justify-content-center">
                   <div class="col-lg-6">
                     <div class="testimonial-content">
+                      <h3>PPDB 2023</h3>
                       <p>
                         <i class="bi bi-quote quote-icon-left"></i>
-                        Proin iaculis purus consequat sem cure digni ssim
-                        donec porttitora entum suscipit rhoncus. Accusantium
-                        quam, ultricies eget id, aliquam eget nibh et. Maecen
-                        aliquam, risus at semper.
+                        Penerimaan Peserta Didik Baru (PPDB) Tahun Pelajaran 2023/2024. Cek Tata Cara dan Persyaratan PPDB di MENU ppdb 2023.
                         <i class="bi bi-quote quote-icon-right"></i>
                       </p>
-                      <h3>Saul Goodman</h3>
-                      <h4>Ceo &amp; Founder</h4>
+                      <h3>Admin SDN 013 TPI Barat</h3>
+                      <h4>Staff IT</h4>
                       <div class="stars">
                         <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-2 text-center">
-                    <img src="assets/img/testimonials/testimonials-1.jpg" class="img-fluid testimonial-img" alt="" />
+                    <img src="assets/img/berita/ppdb.jpg" class="img-fluid testimonial-img" alt="" />
                   </div>
                 </div>
               </div>
@@ -394,23 +393,21 @@
                 <div class="row gy-4 justify-content-center">
                   <div class="col-lg-6">
                     <div class="testimonial-content">
+                      <h3>Selamat Hari Guru</h3>
                       <p>
                         <i class="bi bi-quote quote-icon-left"></i>
-                        Export tempor illum tamen malis malis eram quae irure
-                        esse labore quem cillum quid cillum eram malis quorum
-                        velit fore eram velit sunt aliqua noster fugiat irure
-                        amet legam anim culpa.
+                        Terima Kasih Untuk guru-guru kami sebagai Patriot Pahlawan bangsa tanpa tanda jasa. Perjuangan dan Pengabdianmu tak akan kami lupakan
                         <i class="bi bi-quote quote-icon-right"></i>
                       </p>
-                      <h3>Sara Wilsson</h3>
-                      <h4>Designer</h4>
+                      <h3>Admin SDN 013 TPI Barat</h3>
+                      <h4>Staff IT</h4>
                       <div class="stars">
                         <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-2 text-center">
-                    <img src="assets/img/testimonials/testimonials-2.jpg" class="img-fluid testimonial-img" alt="" />
+                    <img src="assets/img/berita/hari-guru.png" class="img-fluid testimonial-img" alt="" />
                   </div>
                 </div>
               </div>
@@ -422,23 +419,21 @@
                 <div class="row gy-4 justify-content-center">
                   <div class="col-lg-6">
                     <div class="testimonial-content">
+                      <h3>Lomba Kreasi Siaga</h3>
                       <p>
                         <i class="bi bi-quote quote-icon-left"></i>
-                        Enim nisi quem export duis labore cillum quae magna
-                        enim sint quorum nulla quem veniam duis minim tempor
-                        labore quem eram duis noster aute amet eram fore quis
-                        sint minim.
+                        SDN 013 Tanjungpinang Barat mengadakan Lomba Kreasi Siaga yang bertujuan untuk menyaring minat bakat siswa dalam hal fashion show serta paduan suara pramuka.
                         <i class="bi bi-quote quote-icon-right"></i>
                       </p>
-                      <h3>Jena Karlis</h3>
-                      <h4>Store Owner</h4>
+                      <h3>Admin SDN 013 TPI Barat</h3>
+                      <h4>Staff IT</h4>
                       <div class="stars">
                         <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-2 text-center">
-                    <img src="assets/img/testimonials/testimonials-3.jpg" class="img-fluid testimonial-img" alt="" />
+                    <img src="assets/img/berita/pramuka.jpg" class="img-fluid testimonial-img" alt="" />
                   </div>
                 </div>
               </div>
@@ -450,23 +445,21 @@
                 <div class="row gy-4 justify-content-center">
                   <div class="col-lg-6">
                     <div class="testimonial-content">
+                      <h3>Pembagian Rapor</h3>
                       <p>
                         <i class="bi bi-quote quote-icon-left"></i>
-                        Quis quorum aliqua sint quem legam fore sunt eram
-                        irure aliqua veniam tempor noster veniam enim culpa
-                        labore duis sunt culpa nulla illum cillum fugiat legam
-                        esse veniam culpa fore nisi cillum quid.
+                        Apresiasi pihak sekolah terhadap siswa-siswi yang mendapatkan juara tingkat kelas. Apresiasi berupa piala dan hadiah bagi juara 1 hingga 3.
                         <i class="bi bi-quote quote-icon-right"></i>
                       </p>
-                      <h3>John Larson</h3>
-                      <h4>Entrepreneur</h4>
+                      <h3>Admin SDN 013 TPI Barat</h3>
+                      <h4>Staff IT</h4>
                       <div class="stars">
                         <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                       </div>
                     </div>
                   </div>
                   <div class="col-lg-2 text-center">
-                    <img src="assets/img/testimonials/testimonials-4.jpg" class="img-fluid testimonial-img" alt="" />
+                    <img src="assets/img/berita/pembagian-rapor.jpg" class="img-fluid testimonial-img" alt="" />
                   </div>
                 </div>
               </div>
@@ -493,7 +486,7 @@
             <div class="swiper-slide event-item col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
               <div class="chef-member">
                 <div class="member-img">
-                  <img src="assets/img/guru/guru 1.png" class="img-fluid" alt="" />
+                  <img src="assets/img/guru/guru-perempuan.png" class="img-fluid" alt="" />
                   <div class="social">
                     <a title="twitter" href=""><i class="bi bi-twitter"></i></a>
                     <a title="facebook" href=""><i class="bi bi-facebook"></i></a>
@@ -502,8 +495,8 @@
                   </div>
                 </div>
                 <div class="member-info">
-                  <h4>FIQRI KUN WAHYUDI</h4>
-                  <span>Master of Palas Fishing</span>
+                  <h4>Afrihayati</h4>
+                  <span>Guru Kelas</span>
                   <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam cum quam quia, magni officiis corporis id eveniet et, hic culpa nemo repudiandae a assumenda nostrum nulla recusandae beatae mollitia quae!
                   </p>
@@ -515,7 +508,7 @@
             <div class="swiper-slide event-item col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
               <div class="chef-member">
                 <div class="member-img">
-                  <img src="assets/img/guru/guru 2.png" class="img-fluid" alt="" />
+                  <img src="assets/img/guru/guru-laki.png" class="img-fluid" alt="" />
                   <div class="social">
                     <a title="twitter" href=""><i class="bi bi-twitter"></i></a>
                     <a title="facebook" href=""><i class="bi bi-facebook"></i></a>
@@ -524,8 +517,8 @@
                   </div>
                 </div>
                 <div class="member-info">
-                  <h4>Rovy Sapitri</h4>
-                  <span>Mamang Bengkel</span>
+                  <h4>Alimun Akbar Siregar</h4>
+                  <span>Guru Mapel</span>
                   <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam cum quam quia, magni officiis corporis id eveniet et, hic culpa nemo repudiandae a assumenda nostrum nulla recusandae beatae mollitia quae!
                   </p>
@@ -537,7 +530,7 @@
             <div class="swiper-slide event-item col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
               <div class="chef-member">
                 <div class="member-img">
-                  <img src="assets/img/guru/guru 3.png" class="img-fluid" alt="" />
+                  <img src="assets/img/guru/guru-perempuan.png" class="img-fluid" alt="" />
                   <div class="social">
                     <a title="twitter" href=""><i class="bi bi-twitter"></i></a>
                     <a title="facebook" href=""><i class="bi bi-facebook"></i></a>
@@ -546,8 +539,8 @@
                   </div>
                 </div>
                 <div class="member-info">
-                  <h4>Hardi DR.P</h4>
-                  <span>Master of Lawak Fishing</span>
+                  <h4>Irma Nurcahyani</h4>
+                  <span>Tenaga Administrasi Sekolah</span>
                   <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam cum quam quia, magni officiis corporis id eveniet et, hic culpa nemo repudiandae a assumenda nostrum nulla recusandae beatae mollitia quae!
                   </p>
@@ -558,7 +551,7 @@
             <div class="swiper-slide event-item col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="300">
               <div class="chef-member">
                 <div class="member-img">
-                  <img src="assets/img/guru/chefs-3.jpg" class="img-fluid" alt="" />
+                  <img src="assets/img/guru/guru-laki.png" class="img-fluid" alt="" />
                   <div class="social">
                     <a title="twitter" href=""><i class="bi bi-twitter"></i></a>
                     <a title="facebook" href=""><i class="bi bi-facebook"></i></a>
@@ -567,8 +560,8 @@
                   </div>
                 </div>
                 <div class="member-info">
-                  <h4>William Anderson</h4>
-                  <span>Cook</span>
+                  <h4>Aprillo Apollo Q.p</h4>
+                  <span>Guru Mapel</span>
                   <p>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam cum quam quia, magni officiis corporis id eveniet et, hic culpa nemo repudiandae a assumenda nostrum nulla recusandae beatae mollitia quae!
                   </p>
@@ -590,7 +583,7 @@
         <div class="section-header">
           <hr id="fasilitas" style="border: 1px solid red; width: 1px; height: 100px; margin: 0 auto;">
           <h2>Fasilitas</h2>
-          <p>Check <span>Our Gallery</span></p>
+          <p>Cek <span>Fasilitas SDN 013 TPI Barat</span></p>
         </div>
 
         <div class="gallery-slider swiper">
@@ -612,16 +605,12 @@
               <p class="text-center">Lapangan</p>
             </div>
             <div class="swiper-slide">
-              <a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-5.jpg"><img src="assets/img/gallery/gallery-5.jpg" class="img-fluid" alt="" /></a>
+              <a title="kelas" class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/kelas.jpg"><img src="assets/img/gallery/kelas.jpg" class="img-fluid" alt="" /></a>
+              <p class="text-center">Kelas</p>
             </div>
             <div class="swiper-slide">
-              <a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-6.jpg"><img src="assets/img/gallery/gallery-6.jpg" class="img-fluid" alt="" /></a>
-            </div>
-            <div class="swiper-slide">
-              <a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-7.jpg"><img src="assets/img/gallery/gallery-7.jpg" class="img-fluid" alt="" /></a>
-            </div>
-            <div class="swiper-slide">
-              <a class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/gallery-8.jpg"><img src="assets/img/gallery/gallery-8.jpg" class="img-fluid" alt="" /></a>
+              <a title="papan-sekolah" class="glightbox" data-gallery="images-gallery" href="assets/img/gallery/papan-sekolah.jpg"><img src="assets/img/gallery/papan-sekolah.jpg" class="img-fluid" alt="" /></a>
+              <p class="text-center">Papan Sekolah</p>
             </div>
           </div>
           <div class="swiper-pagination"></div>
@@ -716,7 +705,7 @@
         &copy; Copyright <strong><span>SDN 013 Tanjungpinang Barat</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        Designed by Kelompok 1 - Perancangan dan Implementasi Perangkat Lunak
+        Designed by MAMANG UI PROJECT
       </div>
     </div>
   </footer>

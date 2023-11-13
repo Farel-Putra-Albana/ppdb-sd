@@ -49,14 +49,13 @@ if (isset($_POST["login"])) {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
-    <link rel="stylesheet" href="CSS/index.css?=time();?>">
-    <link href="../login_siswa/dist/img/logo.png" rel="icon"/>
+    <link rel="stylesheet" href="CSS/index.css?= time(); ?>">
+    <link href="/assets/img/logo.png" rel="icon" />
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
@@ -68,8 +67,7 @@ if (isset($_POST["login"])) {
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
 
-    <title>Login || PPDB 013</title>
-    
+    <title>Login</title>
 </head>
 <body>
 
@@ -92,9 +90,6 @@ if (isset($_POST["login"])) {
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="verification.php">Masukkan OTP</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/ppdb-sd/index.php">Menu Utama</a>
                 </li>
             </ul>
         </div>

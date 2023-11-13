@@ -360,7 +360,7 @@
         &copy; Copyright <strong><span>SDN 013 Tanjungpinang Barat</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
-        Designed by Kelompok 1 - Perancangan dan Implementasi Perangkat Lunak
+        Designed by MAMANG UI PROJECT
       </div>
     </div>
   </footer>

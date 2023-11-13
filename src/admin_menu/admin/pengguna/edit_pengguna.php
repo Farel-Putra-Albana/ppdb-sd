@@ -33,13 +33,6 @@ if (isset($_GET['kode'])) {
             </div>
 
             <div class="form-group row">
-                <label class="col-sm-2 col-form-label">Password</label>
-                <div class="col-sm-6">
-                    <input type="password" class="form-control" id="pass" name="password" value="<?php echo $data_cek['password']; ?>" />
-                </div>
-            </div>
-
-            <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Level</label>
                 <div class="col-sm-4">
                     <select name="level" id="level" class="form-control">
@@ -65,13 +58,11 @@ if (isset($_POST['Ubah'])) {
     $id_pengguna = $_POST['id_pengguna'];
     $nama_pengguna = $_POST['nama_pengguna'];
     $username = $_POST['username'];
-    $password = md5($_POST['password']); // Replace password_hash() with MD5 for demonstration purposes only, NOT RECOMMENDED for security
     $level = $_POST['level'];
 
     $sql_ubah = "UPDATE login_admin SET
         nama_pengguna='$nama_pengguna',
         username='$username',
-        password='$password',
         level='$level'
         WHERE id_pengguna='$id_pengguna'";
 

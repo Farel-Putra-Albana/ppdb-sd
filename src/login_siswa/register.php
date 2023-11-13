@@ -8,14 +8,23 @@ if (isset($_POST["register"])) {
     $password = $_POST["password"];
     $nik = $_POST["nik"];
 
-    $check_query = mysqli_query($connect, "SELECT * FROM login_siswa where email ='$email'");
-    $rowCount = mysqli_num_rows($check_query);
+    $check_email_query = mysqli_query($connect, "SELECT * FROM login_siswa WHERE email ='$email'");
+    $rowCountEmail = mysqli_num_rows($check_email_query);
+
+    $check_nik_query = mysqli_query($connect, "SELECT * FROM login_siswa WHERE nik ='$nik'");
+    $rowCountNik = mysqli_num_rows($check_nik_query);
 
     if (!empty($email) && !empty($password)) {
-        if ($rowCount > 0) {
+        if ($rowCountEmail > 0) {
 ?>
             <script>
                 alert("Pengguna Dengan Email Tersebut Sudah Ada!");
+            </script>
+        <?php
+        } elseif ($rowCountNik > 0) {
+        ?>
+            <script>
+                alert("NIK Sudah Didaftarkan!");
             </script>
             <?php
         } else {
@@ -64,7 +73,6 @@ if (isset($_POST["register"])) {
         }
     }
 }
-
 ?>
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -87,6 +95,7 @@ if (isset($_POST["register"])) {
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="CSS/register.css?=time();?>">
+    <link href="../login_siswa/dist/img/logo.png" rel="icon" />
 
     <link href="/assets/img/logo.png" rel="icon" />
 
@@ -94,7 +103,7 @@ if (isset($_POST["register"])) {
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <title>Regitrasi</title>
+    <title>Regitrasi || PPDB 013</title>
 
 </head>
 
@@ -102,11 +111,11 @@ if (isset($_POST["register"])) {
 
     <nav class="navbar navbar-expand-lg navbar-light navbar-laravel">
         <div class="container">
-        <a class="navbar-brand" href="#">
-        <img src="img/logo.png" alt="Logo" class="logo">
-        <span class="d-inline d-md-none">PPDB SD Negeri 013</span>
-        <span class="d-none d-md-inline">Aplikasi SDN 013 Tanjungpinang Barat</span>
-        </a>
+            <a class="navbar-brand" href="#">
+                <img src="img/logo.png" alt="Logo" class="logo">
+                <span class="d-inline d-md-none">PPDB SD Negeri 013</span>
+                <span class="d-none d-md-inline">Aplikasi SDN 013 Tanjungpinang Barat</span>
+            </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -157,10 +166,10 @@ if (isset($_POST["register"])) {
                                 </div>
 
                                 <script>
-                                    document.getElementById("password").addEventListener("input", function () {
+                                    document.getElementById("password").addEventListener("input", function() {
                                         var password = this.value;
                                         var togglePassword = document.getElementById("togglePassword");
-                                        
+
                                         if (password.length < 6) {
                                             // Tambahkan pesan kesalahan jika kurang dari 6 karakter
                                             this.setCustomValidity("Password harus memiliki setidaknya 6 karakter");
@@ -185,10 +194,10 @@ if (isset($_POST["register"])) {
         </div>
     </main>
 
-<!-- Include Bootstrap JS and jQuery -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Include Bootstrap JS and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </body>
 

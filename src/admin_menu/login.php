@@ -9,7 +9,7 @@ include "inc/koneksi.php";
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Login Admin Menu || SDN 013 Tanjungpinang Barat</title>
-	<link rel="icon" href="dist/img/logo.jpg">
+	<link rel="icon" href="../admin_menu/dist/img/logo.png">
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 

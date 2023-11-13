@@ -126,13 +126,13 @@
 
             <ul class="dropdown__menu">
               <li>
-                <a href="/index.php" class="dropdown__link">
+                <a href="/ppdb-sd/index.php" class="dropdown__link">
                   <i class="ri-pie-chart-line"></i> Visi Misi
                 </a>
               </li>
 
               <li>
-                <a href="/index.php" class="dropdown__link">
+                <a href="/ppdb-sd/index.php" class="dropdown__link">
                   <i class="ri-pushpin-2-line"></i> Tata Tertib
                 </a>
               </li>
@@ -145,19 +145,19 @@
 
                 <ul class="dropdown__submenu">
                   <li>
-                    <a href="/index.php" class="dropdown__sublink">
+                    <a href="/ppdb-sd/index.php" class="dropdown__sublink">
                       <i class="ri-user-line"></i> Data Kepala Sekolah
                     </a>
                   </li>
 
                   <li>
-                    <a href="/index.php" class="dropdown__sublink">
+                    <a href="/ppdb-sd/index.php" class="dropdown__sublink">
                       <i class="ri-team-line"></i> Data Guru
                     </a>
                   </li>
 
                   <li>
-                    <a href="/index.php" class="dropdown__sublink">
+                    <a href="/ppdb-sd/index.php" class="dropdown__sublink">
                       <i class="ri-building-2-line"></i> Fasilitas Sekolah
                     </a>
                   </li>
@@ -193,7 +193,7 @@
             </ul>
           </li>
 
-          <li><a href="/index.php" class="nav__link ri-article-line">Berita</a></li>
+          <li><a href="/ppdb-sd/index.php" class="nav__link ri-article-line">Berita</a></li>
 
           <li><a href="#footer" class="nav__link ri-information-line">Informasi Resmi</a></li>
 

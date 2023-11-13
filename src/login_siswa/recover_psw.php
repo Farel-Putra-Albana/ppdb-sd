@@ -18,13 +18,14 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,600" rel="stylesheet" type="text/css">
 
     <link rel="stylesheet" href="CSS/recover.css?=time();?>">
+    <link href="../login_siswa/dist/img/logo.png" rel="icon"/>
 
     <link rel="icon" href="Favicon.png">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
 
-    <title>Dapatkan Password</title>
+    <title>Dapatkan Password || PPDB 013</title>
 </head>
 <body>
 

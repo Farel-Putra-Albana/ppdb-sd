@@ -87,7 +87,7 @@
 			<div class="icon">
 				<i class="ion ion-person-add"></i>
 			</div>
-			<a href="?page=data-pegawai" class="small-box-footer">Selengkapnya
+			<a href="?page=data-guru" class="small-box-footer">Selengkapnya
 				<i class="fas fa-arrow-circle-right"></i>
 			</a>
 		</div>
@@ -105,7 +105,7 @@
 			<div class="icon">
 				<i class="ion ion-person-add"></i>
 			</div>
-			<a href="?page=data-pegawai" class="small-box-footer">Selengkapnya
+			<a href="?page=data-guru-pegawai" class="small-box-footer">Selengkapnya
 				<i class="fas fa-arrow-circle-right"></i>
 			</a>
 		</div>
@@ -123,7 +123,7 @@
 			<div class="icon">
 				<i class="ion ion-person-add"></i>
 			</div>
-			<a href="?page=data-pegawai" class="small-box-footer">Selengkapnya
+			<a href="?page=data-guru-honorer" class="small-box-footer">Selengkapnya
 				<i class="fas fa-arrow-circle-right"></i>
 			</a>
 		</div>
@@ -141,7 +141,7 @@
 			<div class="icon">
 				<i class="ion ion-person-add"></i>
 			</div>
-			<a href="?page=data-pegawai" class="small-box-footer">Selengkapnya
+			<a href="?page=data-guru-ppk" class="small-box-footer">Selengkapnya
 				<i class="fas fa-arrow-circle-right"></i>
 			</a>
 		</div>

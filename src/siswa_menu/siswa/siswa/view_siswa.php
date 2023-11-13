@@ -51,7 +51,7 @@ if (isset($_SESSION['ses_id_login_siswa'])) {
 									<b>NIK</b>
 								</td>
 								<td>:
-									<?php echo $data_cek['nik']; ?>
+									<?php echo $data_cek['nik_siswa']; ?>
 								</td>
 							</tr>
 							<tr>

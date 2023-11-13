@@ -24,7 +24,7 @@ if (isset($_SESSION['ses_id_login_siswa'])) {
         // Data berkas ditemukan, lanjutkan dengan menampilkan formulir
         $data_cek = mysqli_fetch_array($query_cek, MYSQLI_BOTH);
     }
-    
+
     if (isset($_POST['Ubah'])) {
         // Tentukan direktori penyimpanan berkas
         $target_directory = 'foto/';
@@ -67,12 +67,14 @@ if (isset($_SESSION['ses_id_login_siswa'])) {
         // Pastikan semua berkas telah diunggah dengan sukses
         if ($pindah_ktp && $pindah_kk && $pindah_akta_lahir && $pindah_pas_foto) {
             // Ubah kode SQL untuk mengupdate data berkas di tabel berkas
+            // Ubah kode SQL untuk mengupdate data berkas di tabel berkas
             $sql_ubah_berkas = "UPDATE berkas SET
-                                ktp='" . $ktp_baru . "',
-                                kartu_keluarga='" . $kk_baru . "',
-                                akta_lahir='" . $akta_lahir_baru . "',
-                                pas_foto='" . $pas_foto_baru . "'
-                                WHERE id_siswa='$id_login_siswa'";
+                    ktp='" . ($pindah_ktp ? $ktp_baru : $ktp_lama) . "',
+                    kartu_keluarga='" . ($pindah_kk ? $kk_baru : $kk_lama) . "',
+                    akta_lahir='" . ($pindah_akta_lahir ? $akta_lahir_baru : $akta_lahir_lama) . "',
+                    pas_foto='" . ($pindah_pas_foto ? $pas_foto_baru : $pas_foto_lama) . "'
+                    WHERE id_siswa='$id_login_siswa'";
+
 
             $query_ubah_berkas = mysqli_query($koneksi, $sql_ubah_berkas);
 
@@ -110,7 +112,7 @@ if (isset($_SESSION['ses_id_login_siswa'])) {
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="card-body">
                     <!-- ... (bagian formulir dan tampilan berkas) -->
-<!-- Menampilkan foto KTP -->
+                    <!-- Menampilkan foto KTP -->
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label">Berkas KTP</label>
                         <div class="col-sm-6">

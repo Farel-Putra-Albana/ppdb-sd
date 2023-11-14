@@ -67,33 +67,43 @@ if (isset($_SESSION['ses_id_login_siswa'])) {
         // Pastikan semua berkas telah diunggah dengan sukses
         if ($pindah_ktp && $pindah_kk && $pindah_akta_lahir && $pindah_pas_foto) {
             // Ubah kode SQL untuk mengupdate data berkas di tabel berkas
-            // Ubah kode SQL untuk mengupdate data berkas di tabel berkas
             $sql_ubah_berkas = "UPDATE berkas SET
-                    ktp='" . ($pindah_ktp ? $ktp_baru : $ktp_lama) . "',
-                    kartu_keluarga='" . ($pindah_kk ? $kk_baru : $kk_lama) . "',
-                    akta_lahir='" . ($pindah_akta_lahir ? $akta_lahir_baru : $akta_lahir_lama) . "',
-                    pas_foto='" . ($pindah_pas_foto ? $pas_foto_baru : $pas_foto_lama) . "'
-                    WHERE id_siswa='$id_login_siswa'";
-
+                        ktp='" . $ktp_baru . "',
+                        kartu_keluarga='" . $kk_baru . "',
+                        akta_lahir='" . $akta_lahir_baru . "',
+                        pas_foto='" . $pas_foto_baru . "'
+                        WHERE id_siswa=" . $data_cek['id_siswa']; // Gunakan ID yang sesuai
 
             $query_ubah_berkas = mysqli_query($koneksi, $sql_ubah_berkas);
 
             if ($query_ubah_berkas) {
+                // Query berhasil dieksekusi, tampilkan pesan sukses
                 echo "<script>
-                Swal.fire({title: 'Ubah Data Berkas Berhasil', text: '', icon: 'success', confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        window.location = 'data.php?page=data-berkas-berkas';
-                    }
-                })</script>";
+            Swal.fire({
+                title: 'Ubah Data Berkas Berhasil',
+                text: '',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.value) {
+                    window.location = 'data.php?page=data-berkas-berkas';
+                }
+            });
+        </script>";
             } else {
+                // Query gagal dieksekusi, tampilkan pesan gagal
                 echo "<script>
-                Swal.fire({title: 'Ubah Data Berkas Gagal', text: '', icon: 'error', confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        window.location = 'data.php?page=edit-berkas&kode=$id_login_siswa';
-                    }
-                })</script>";
+            Swal.fire({
+                title: 'Ubah Data Berkas Gagal',
+                text: '',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            }).then((result) => {
+                if (result.value) {
+                    window.location = 'data.php?page=edit-berkas&kode=$id_login_siswa';
+                }
+            });
+        </script>";
             }
         } else {
             echo "Gagal mengunggah satu atau lebih berkas.";
@@ -188,11 +198,12 @@ if (isset($_SESSION['ses_id_login_siswa'])) {
                         </div>
                     </div>
                 </div>
-                <div class="card-footer">
-                    <input type="submit" name="Ubah" value="Simpan" class="btn btn-success">
-                    <a href="?page=data-berkas" title="Kembali" class="btn btn-secondary">Batal</a>
-                </div>
-            </form>
+        </div>
+        <div class="card-footer">
+            <input type="submit" name="Ubah" value="Simpan" class="btn btn-success">
+            <a href="?page=data-berkas" title="Kembali" class="btn btn-secondary">Batal</a>
+        </div>
+        </form>
         </div>
 <?php
     } else {

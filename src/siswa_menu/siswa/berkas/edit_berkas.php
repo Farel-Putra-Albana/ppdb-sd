@@ -41,69 +41,108 @@ if (isset($_SESSION['ses_id_login_siswa'])) {
         $akta_lahir_baru = @$_FILES['akta_lahir']['name'];
         $pas_foto_baru = @$_FILES['pas_foto']['name'];
 
+        // Inisialisasi variabel-variabel untuk cek apakah berkas baru diunggah
+        $pindah_ktp = false;
+        $pindah_kk = false;
+        $pindah_akta_lahir = false;
+        $pindah_pas_foto = false;
+
         // Cek dan hapus berkas lama jika berkas baru diunggah
-        if (!empty($ktp_baru) && file_exists($target_directory . $ktp_lama)) {
+        if (!empty($ktp_baru)) {
             unlink($target_directory . $ktp_lama);
+            $pindah_ktp = move_uploaded_file($_FILES['ktp']['tmp_name'], $target_directory . $ktp_baru);
         }
 
-        if (!empty($kk_baru) && file_exists($target_directory . $kk_lama)) {
+        if (!empty($kk_baru)) {
             unlink($target_directory . $kk_lama);
+            $pindah_kk = move_uploaded_file($_FILES['kk']['tmp_name'], $target_directory . $kk_baru);
         }
 
-        if (!empty($akta_lahir_baru) && file_exists($target_directory . $akta_lahir_lama)) {
+        if (!empty($akta_lahir_baru)) {
             unlink($target_directory . $akta_lahir_lama);
+            $pindah_akta_lahir = move_uploaded_file($_FILES['akta_lahir']['tmp_name'], $target_directory . $akta_lahir_baru);
         }
 
-        if (!empty($pas_foto_baru) && file_exists($target_directory . $pas_foto_lama)) {
+        if (!empty($pas_foto_baru)) {
             unlink($target_directory . $pas_foto_lama);
+            $pindah_pas_foto = move_uploaded_file($_FILES['pas_foto']['tmp_name'], $target_directory . $pas_foto_baru);
         }
 
-        // Lakukan pengunggahan berkas baru
-        $pindah_ktp = move_uploaded_file($_FILES['ktp']['tmp_name'], $target_directory . $ktp_baru);
-        $pindah_kk = move_uploaded_file($_FILES['kk']['tmp_name'], $target_directory . $kk_baru);
-        $pindah_akta_lahir = move_uploaded_file($_FILES['akta_lahir']['tmp_name'], $target_directory . $akta_lahir_baru);
-        $pindah_pas_foto = move_uploaded_file($_FILES['pas_foto']['tmp_name'], $target_directory . $pas_foto_baru);
-
-        // Pastikan semua berkas telah diunggah dengan sukses
-        if ($pindah_ktp && $pindah_kk && $pindah_akta_lahir && $pindah_pas_foto) {
+        // Pastikan minimal satu berkas telah diunggah dengan sukses
+        if ($pindah_ktp || $pindah_kk || $pindah_akta_lahir || $pindah_pas_foto) {
             // Ubah kode SQL untuk mengupdate data berkas di tabel berkas
-            $sql_ubah_berkas = "UPDATE berkas SET
-                        ktp='" . $ktp_baru . "',
-                        kartu_keluarga='" . $kk_baru . "',
-                        akta_lahir='" . $akta_lahir_baru . "',
-                        pas_foto='" . $pas_foto_baru . "'
-                        WHERE id_siswa=" . $data_cek['id_siswa']; // Gunakan ID yang sesuai
+            $sql_ubah_berkas = "UPDATE berkas SET";
+            $update_fields = [];
+            $param_types = "";
+            $param_values = [];
 
-            $query_ubah_berkas = mysqli_query($koneksi, $sql_ubah_berkas);
+            if ($pindah_ktp) {
+                $update_fields[] = "ktp=?";
+                $param_types .= "s";
+                $param_values[] = $ktp_baru;
+            }
 
-            if ($query_ubah_berkas) {
-                // Query berhasil dieksekusi, tampilkan pesan sukses
-                echo "<script>
-            Swal.fire({
-                title: 'Ubah Data Berkas Berhasil',
-                text: '',
-                icon: 'success',
-                confirmButtonText: 'OK'
-            }).then((result) => {
-                if (result.value) {
-                    window.location = 'data.php?page=data-berkas-berkas';
+            if ($pindah_kk) {
+                $update_fields[] = "kartu_keluarga=?";
+                $param_types .= "s";
+                $param_values[] = $kk_baru;
+            }
+
+            if ($pindah_akta_lahir) {
+                $update_fields[] = "akta_lahir=?";
+                $param_types .= "s";
+                $param_values[] = $akta_lahir_baru;
+            }
+
+            if ($pindah_pas_foto) {
+                $update_fields[] = "pas_foto=?";
+                $param_types .= "s";
+                $param_values[] = $pas_foto_baru;
+            }
+
+            $sql_ubah_berkas .= " " . implode(', ', $update_fields);
+            $sql_ubah_berkas .= " WHERE id_siswa=?";
+            $param_types .= "i";
+            $param_values[] = $data_cek['id_siswa'];
+
+            $stmt = mysqli_prepare($koneksi, $sql_ubah_berkas);
+
+            if ($stmt) {
+                mysqli_stmt_bind_param($stmt, $param_types, ...$param_values);
+                $query_ubah_berkas = mysqli_stmt_execute($stmt);
+                mysqli_stmt_close($stmt);
+
+                if ($query_ubah_berkas) {
+                    // Query berhasil dieksekusi, tampilkan pesan sukses
+                    echo "<script>
+                        Swal.fire({
+                            title: 'Ubah Data Berkas Berhasil',
+                            text: '',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location = 'data.php?page=data-berkas-berkas';
+                            }
+                        });
+                    </script>";
+                } else {
+                    // Query gagal dieksekusi, tampilkan pesan gagal
+                    echo "<script>
+                        Swal.fire({
+                            title: 'Ubah Data Berkas Gagal',
+                            text: '',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.value) {
+                                window.location = 'data.php?page=edit-berkas&kode=$id_login_siswa';
+                            }
+                        });
+                    </script>";
                 }
-            });
-        </script>";
             } else {
-                // Query gagal dieksekusi, tampilkan pesan gagal
-                echo "<script>
-            Swal.fire({
-                title: 'Ubah Data Berkas Gagal',
-                text: '',
-                icon: 'error',
-                confirmButtonText: 'OK'
-            }).then((result) => {
-                if (result.value) {
-                    window.location = 'data.php?page=edit-berkas&kode=$id_login_siswa';
-                }
-            });
-        </script>";
+                echo "Error dalam menyiapkan pernyataan SQL: " . mysqli_error($koneksi);
             }
         } else {
             echo "Gagal mengunggah satu atau lebih berkas.";

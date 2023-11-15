@@ -76,7 +76,7 @@
 								?>
 									<tr>
 										<td align="center">
-											<?php echo $data['nik_siswa']; ?>
+											<?php echo $data['nik']; ?>
 										</td>
 										<td>
 											<?php echo $data['nama_siswa']; ?>
@@ -91,13 +91,13 @@
 											<?php echo $data['alamat_siswa']; ?>
 										</td>
 										<td>
-											<a href="?page=view-siswa&kode=<?php echo $data['nik_siswa']; ?>" title="Detail" class="btn btn-info btn-sm">
+											<a href="?page=view-siswa&kode=<?php echo $data['nik']; ?>" title="Detail" class="btn btn-info btn-sm">
 												<i class="fa fa-eye"></i>
 											</a>
-											<a href="?page=edit-siswa&kode=<?php echo $data['nik_siswa']; ?>" title="Ubah" class="btn btn-success btn-sm">
+											<a href="?page=edit-siswa&kode=<?php echo $data['nik']; ?>" title="Ubah" class="btn btn-success btn-sm">
 												<i class="fa fa-edit"></i>
 											</a>
-											<a href="?page=del-siswa&kode=<?php echo $data['nik_siswa']; ?>" onclick="return confirm('Apakah anda yakin hapus data ini ?')" title="Hapus" class="btn btn-danger btn-sm">
+											<a href="?page=del-siswa&kode=<?php echo $data['nik']; ?>" onclick="return confirm('Apakah anda yakin hapus data ini ?')" title="Hapus" class="btn btn-danger btn-sm">
 												<i class="fa fa-trash"></i>
 											</a>
 										</td>

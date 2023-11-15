@@ -35,7 +35,7 @@ if (isset($_SESSION['ses_id_login_siswa'])) {
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">NIK</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" id="nik" name="nik" value="<?php echo $data_cek['nik_siswa']; ?>" readonly />
+					<input type="text" class="form-control" id="nik" name="nik" value="<?php echo $data_cek['nik']; ?>" readonly />
 				</div>
 			</div>
 

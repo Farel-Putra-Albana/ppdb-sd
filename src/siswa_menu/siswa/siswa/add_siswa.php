@@ -18,13 +18,6 @@
 			<div class="card-body">
 
 				<div class="form-group row">
-					<label class="col-sm-2 col-form-label">NIK</label>
-					<div class="col-sm-5">
-						<input type="text" class="form-control" id="nik_siswa" name="nik_siswa" placeholder="Masukkan NIK Siswa" required>
-					</div>
-				</div>
-
-				<div class="form-group row">
 					<label class="col-sm-2 col-form-label">Nama Siswa</label>
 					<div class="col-sm-5">
 						<input type="text" class="form-control" id="nama_siswa" name="nama_siswa" placeholder="Masukkan Nama Siswa" required>
@@ -124,7 +117,6 @@
 
 		if (isset($_POST['Simpan'])) {
 			// Ambil data dari formulir
-			$nik_siswa = mysqli_real_escape_string($koneksi, $_POST['nik_siswa']);
 			$nama_siswa = mysqli_real_escape_string($koneksi, $_POST['nama_siswa']);
 			$tempat_lahir_siswa = mysqli_real_escape_string($koneksi, $_POST['tempat_lahir_siswa']);
 			$tgl_lahir_siswa = mysqli_real_escape_string($koneksi, $_POST['tgl_lahir_siswa']);
@@ -136,7 +128,7 @@
 			$status_keluarga = mysqli_real_escape_string($koneksi, $_POST['status_keluarga']);
 
 			// Query untuk memasukkan data ke tabel biodata_siswa
-			$sql_simpan = "INSERT INTO biodata_siswa (id_login_siswa, nik_siswa, nama_siswa, tempat_lahir_siswa, tgl_lahir_siswa, alamat_siswa, jk_siswa, agama_siswa, anak_ke, jumlah_saudara, status_keluarga) VALUES ('$id_login_siswa', '$nik_siswa', '$nama_siswa', '$tempat_lahir_siswa', '$tgl_lahir_siswa', '$alamat_siswa', '$jk_siswa', '$agama_siswa', '$anak_ke', '$jumlah_saudara', '$status_keluarga')";
+			$sql_simpan = "INSERT INTO biodata_siswa (id_login_siswa, nik_siswa, nama_siswa, tempat_lahir_siswa, tgl_lahir_siswa, alamat_siswa, jk_siswa, agama_siswa, anak_ke, jumlah_saudara, status_keluarga) VALUES ('$id_login_siswa', '$nama_siswa', '$tempat_lahir_siswa', '$tgl_lahir_siswa', '$alamat_siswa', '$jk_siswa', '$agama_siswa', '$anak_ke', '$jumlah_saudara', '$status_keluarga')";
 			$query_simpan = mysqli_query($koneksi, $sql_simpan);
 
 			if ($query_simpan) {

@@ -390,7 +390,7 @@ while ($data = $sql->fetch_assoc()) {
 		<footer class="main-footer">
 			<div class="float-right d-none d-sm-block">
 				&copy;
-				<a target="_blank" href="https://www.bkn.go.id/layanan/simpegnas/">
+				<a target="_blank" href="https://sekolah.data.kemdikbud.go.id/index.php/chome/profil/c0e217bd-31f5-e011-91fa-abd7b1b23b22">
 					<strong>Sistem Informasi || SDN 013 Tanjungpinang Barat</strong>
 				</a>
 			</div>

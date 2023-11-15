@@ -1,7 +1,9 @@
 <?php
 if (isset($_GET['kode'])) {
     $id_siswa = mysqli_real_escape_string($koneksi, $_GET['kode']); // Ambil id siswa dari parameter URL
-    $sql_cek = "SELECT * FROM biodata_siswa WHERE id_siswa='" . $id_siswa . "'";
+    $sql_cek = "SELECT login_siswa.nik, biodata_siswa.* FROM login_siswa
+		LEFT JOIN biodata_siswa ON login_siswa.id_login_siswa = biodata_siswa.id_login_siswa
+		WHERE biodata_siswa.id_siswa='" . $id_siswa . "'";
     $query_cek = mysqli_query($koneksi, $sql_cek);
     $data_cek = mysqli_fetch_assoc($query_cek); // Menggunakan mysqli_fetch_assoc untuk array asosiatif
 }
@@ -19,7 +21,7 @@ if (isset($_GET['kode'])) {
             <div class="form-group row">
 				<label class="col-sm-2 col-form-label">NIK</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" id="nik_siswa" name="nik_siswa" value="<?php echo $data_cek['nik_siswa']; ?>" readonly />
+					<input type="text" class="form-control" id="nik_siswa" name="nik_siswa" value="<?php echo $data_cek['nik']; ?>" readonly />
 				</div>
 			</div>
 

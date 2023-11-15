@@ -51,10 +51,13 @@
 
                         <?php
                         $no = 1;
-                        $sql = $koneksi->query("SELECT biodata_siswa.*, biodata_ayah.*, biodata_ibu.*, berkas.pas_foto FROM biodata_siswa
+                        $sql = $koneksi->query("SELECT login_siswa.nik, biodata_siswa.*, biodata_ayah.*, biodata_ibu.*, berkas.pas_foto 
+                            FROM login_siswa
+                            LEFT JOIN biodata_siswa ON login_siswa.id_login_siswa = biodata_siswa.id_login_siswa
                             LEFT JOIN biodata_ayah ON biodata_siswa.id_siswa = biodata_ayah.id_siswa
                             LEFT JOIN biodata_ibu ON biodata_siswa.id_siswa = biodata_ibu.id_siswa
-                            LEFT JOIN berkas ON biodata_siswa.id_siswa = berkas.id_siswa");
+                            LEFT JOIN berkas ON biodata_siswa.id_siswa = berkas.id_siswa
+                            WHERE biodata_siswa.id_siswa IS NOT NULL");  // Menambahkan kondisi WHERE untuk memeriksa apakah data biodata_siswa sudah ada
 
                         while ($data = $sql->fetch_assoc()) {
                         ?>
@@ -67,7 +70,7 @@
                                     <img src="/ppdb-sd/src/siswa_menu/foto/<?php echo $data['pas_foto']; ?>" width="70px" />
                                 </td>
                                 <td>
-                                    <?php echo $data['nik_siswa']; ?>
+                                    <?php echo $data['nik']; ?>
                                 </td>
                                 <td>
                                     <?php echo $data['nama_siswa']; ?>
@@ -85,7 +88,6 @@
                                         <a href="?page=view-ayah&kode=<?php echo $data['id_ayah']; ?>" title="Detail" class="btn btn-info btn-sm">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        </a>
                                         <a href="?page=edit-ayah&kode=<?php echo $data['id_ayah']; ?>" title="Ubah" class="btn btn-success btn-sm">
                                             <i class="fa fa-edit"></i>
                                         </a>
@@ -94,7 +96,6 @@
                                     <td>
                                         <a href="?page=view-ibu&kode=<?php echo $data['id_ibu']; ?>" title="Detail" class="btn btn-info btn-sm">
                                             <i class="fa fa-eye"></i>
-                                        </a>
                                         </a>
                                         <a href="?page=edit-ibu&kode=<?php echo $data['id_ibu']; ?>" title="Ubah" class="btn btn-success btn-sm">
                                             <i class="fa fa-edit"></i>
@@ -105,12 +106,12 @@
                                         <a href="?page=view-siswa&kode=<?php echo $data['id_siswa']; ?>" title="Detail" class="btn btn-info btn-sm">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        </a>
                                         <a href="?page=edit-siswa&kode=<?php echo $data['id_siswa']; ?>" title="Ubah" class="btn btn-success btn-sm">
                                             <i class="fa fa-edit"></i>
                                         </a>
                                         <a href="?page=del-siswa&kode=<?php echo $data['id_siswa']; ?>" onclick="return confirm('Apakah anda yakin hapus data ini ?')" title="Hapus" class="btn btn-danger btn-sm">
                                             <i class="fa fa-trash"></i>
+                                        </a>
                                     </td>
                                 </div>
                             </tr>
@@ -124,6 +125,7 @@
             </div>
         </div>
         <!-- /.card-body -->
+    </div>
 </body>
 
 </html>

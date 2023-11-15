@@ -1,7 +1,9 @@
 <?php
 
 if (isset($_GET['kode'])) {
-    $sql_cek = "SELECT biodata_siswa.*, biodata_ayah.*, biodata_ibu.*, berkas.pas_foto FROM biodata_siswa
+    $sql_cek = "SELECT login_siswa.nik, biodata_siswa.*, biodata_ayah.*, biodata_ibu.*, berkas.pas_foto 
+    FROM login_siswa
+    LEFT JOIN biodata_siswa ON login_siswa.id_login_siswa = biodata_siswa.id_login_siswa
     LEFT JOIN biodata_ayah ON biodata_siswa.id_siswa = biodata_ayah.id_siswa
     LEFT JOIN biodata_ibu ON biodata_siswa.id_siswa = biodata_ibu.id_siswa
     LEFT JOIN berkas ON biodata_siswa.id_siswa = berkas.id_siswa WHERE biodata_siswa.id_siswa='" . $_GET['kode'] . "'";
@@ -28,7 +30,7 @@ if (isset($_GET['kode'])) {
                                         <b>NIK</b>
                                     </td>
                                     <td>:
-                                        <?php echo $data_cek['nik_siswa']; ?>
+                                        <?php echo $data_cek['nik']; ?>
                                     </td>
                                 </tr>
                                 <tr>

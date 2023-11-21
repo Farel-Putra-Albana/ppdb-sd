@@ -1,11 +1,16 @@
 <?php
 include('../inc/koneksi.php'); // Sertakan file koneksi database Anda
 
-if (isset($_POST['nik_siswa'])) {
-    $searchTerm = $_POST['nik_siswa'];
+if (isset($_POST['nik'])) {
+    $searchTerm = $_POST['nik'];
 
-    // Lakukan kueri SQL untuk mencari hasil berdasarkan nik_siswa
-    $sql = "SELECT biodata_siswa.nik_siswa, biodata_siswa.nama_siswa, biodata_siswa.jk_siswa, hasil_seleksi.tgl_penerimaan, hasil_seleksi.jalur_penerimaan, hasil_seleksi.status_penerimaan FROM biodata_siswa LEFT JOIN hasil_seleksi ON biodata_siswa.id_siswa = hasil_seleksi.id_siswa WHERE biodata_siswa.nik_siswa LIKE '%$searchTerm%'";
+    // Lakukan kueri SQL untuk mencari hasil berdasarkan nik di tabel login_siswa
+    $sql = "SELECT biodata_siswa.id_siswa, login_siswa.nik, biodata_siswa.nama_siswa, biodata_siswa.jk_siswa, hasil_seleksi.tgl_penerimaan, hasil_seleksi.jalur_penerimaan, hasil_seleksi.status_penerimaan
+            FROM biodata_siswa
+                LEFT JOIN login_siswa ON biodata_siswa.id_login_siswa = login_siswa.id_login_siswa
+                LEFT JOIN hasil_seleksi ON biodata_siswa.id_siswa = hasil_seleksi.id_siswa
+                WHERE login_siswa.nik LIKE '%$searchTerm%'";
+
 
     $result = mysqli_query($koneksi, $sql);
 
@@ -20,7 +25,7 @@ if (isset($_POST['nik_siswa'])) {
                 $statusClass = 'table-warning';
             }
             echo "<tr class='$statusClass'>";
-            echo "<td><h6>" . $row['nik_siswa'] . "</h6></td>";
+            echo "<td><h6>" . $row['nik'] . "</h6></td>";
             echo "<td><h6>" . $row['nama_siswa'] . "</h6></td>";
             echo "<td><h6>" . $row['jk_siswa'] . "</h6></td>";
             if ($row['tgl_penerimaan']) {
@@ -47,4 +52,3 @@ if (isset($_POST['nik_siswa'])) {
         echo $output;
     }
 }
-?>

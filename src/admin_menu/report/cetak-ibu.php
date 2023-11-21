@@ -30,7 +30,9 @@ if ($id_siswa != '') {
 			<?php
 		}
 
-		$sql_tampil = "SELECT biodata_siswa.*, berkas.pas_foto FROM biodata_siswa
+		$sql_tampil = "SELECT login_siswa.nik, biodata_siswa.*, berkas.pas_foto 
+					FROM biodata_siswa
+						LEFT JOIN login_siswa ON biodata_siswa.id_login_siswa = login_siswa.id_login_siswa
             LEFT JOIN berkas ON biodata_siswa.id_siswa = berkas.id_siswa WHERE biodata_siswa.id_siswa='" . $id_siswa . "'";
 		$query_tampil = mysqli_query($koneksi, $sql_tampil);
 		$no = 1;
@@ -50,7 +52,7 @@ if ($id_siswa != '') {
 						<td>NIK Siswa</td>
 						<td>:</td>
 						<td>
-							<?php echo $data['nik_siswa']; ?>
+							<?php echo $data['nik']; ?>
 						</td>
 					</tr>
 					<tr class="mt-2">

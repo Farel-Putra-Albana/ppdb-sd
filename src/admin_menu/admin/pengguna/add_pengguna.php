@@ -50,7 +50,7 @@ if (isset($_POST['Simpan'])) {
     // Mulai proses simpan data
     $nama_pengguna = $_POST['nama_pengguna'];
     $username = $_POST['username'];
-    $password = md5($_POST['password']); // Replace password_hash() with MD5 for demonstration purposes only, NOT RECOMMENDED for security
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT); // Use password_hash() for secure password hashing
     $level = $_POST['level'];
 
     $sql_simpan = "INSERT INTO login_admin (nama_pengguna, username, password, level) VALUES (

@@ -22,7 +22,8 @@
 
                     <?php
                     $no = 1;
-                    $sql = $koneksi->query("SELECT biodata_siswa.*, berkas.*, hasil_seleksi.* FROM biodata_siswa
+                    $sql = $koneksi->query("SELECT login_siswa.nik, biodata_siswa.*, berkas.*, hasil_seleksi.* FROM biodata_siswa
+                        LEFT JOIN login_siswa ON biodata_siswa.id_login_siswa = login_siswa.id_login_siswa
                         LEFT JOIN berkas ON biodata_siswa.id_siswa = berkas.id_siswa
                         LEFT JOIN hasil_seleksi ON biodata_siswa.id_siswa = hasil_seleksi.id_siswa");
                     while ($data = $sql->fetch_assoc()) {
@@ -35,7 +36,7 @@
                                 <?php echo $no++; ?>
                             </td>
                             <td>
-                                <?php echo $data['nik_siswa']; ?>
+                                <?php echo $data['nik']; ?>
                             </td>
                             <td>
                                 <?php echo $data['nama_siswa']; ?>

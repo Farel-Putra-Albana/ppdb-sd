@@ -22,10 +22,12 @@
 
                     <?php
                     $no = 1;
-                    $sql = $koneksi->query("SELECT biodata_siswa.id_siswa, biodata_siswa.nik_siswa, biodata_siswa.nama_siswa, berkas.*, hasil_seleksi.status_penerimaan
-                        FROM biodata_siswa
-                        LEFT JOIN berkas ON biodata_siswa.id_siswa = berkas.id_siswa
-                        LEFT JOIN hasil_seleksi ON biodata_siswa.id_siswa = hasil_seleksi.id_siswa");
+                    $sql = $koneksi->query("SELECT biodata_siswa.id_siswa, biodata_siswa.nama_siswa, login_siswa.nik, berkas.*, hasil_seleksi.status_penerimaan
+                    FROM biodata_siswa
+                    LEFT JOIN login_siswa ON biodata_siswa.id_login_siswa = login_siswa.id_login_siswa
+                    LEFT JOIN berkas ON biodata_siswa.id_siswa = berkas.id_siswa
+                    LEFT JOIN hasil_seleksi ON biodata_siswa.id_siswa = hasil_seleksi.id_siswa;
+                    ");
                     while ($data = $sql->fetch_assoc()) {
                         // Cek jika status_penerimaan tidak ada data
                         if ($data['status_penerimaan'] === null) {
@@ -36,7 +38,7 @@
                                 <?php echo $no++; ?>
                             </td>
                             <td>
-                                <?php echo $data['nik_siswa']; ?>
+                                <?php echo $data['nik']; ?>
                             </td>
                             <td>
                                 <?php echo $data['nama_siswa']; ?>

@@ -128,7 +128,7 @@
 			$status_keluarga = mysqli_real_escape_string($koneksi, $_POST['status_keluarga']);
 
 			// Query untuk memasukkan data ke tabel biodata_siswa
-			$sql_simpan = "INSERT INTO biodata_siswa (id_login_siswa, nik_siswa, nama_siswa, tempat_lahir_siswa, tgl_lahir_siswa, alamat_siswa, jk_siswa, agama_siswa, anak_ke, jumlah_saudara, status_keluarga) VALUES ('$id_login_siswa', '$nama_siswa', '$tempat_lahir_siswa', '$tgl_lahir_siswa', '$alamat_siswa', '$jk_siswa', '$agama_siswa', '$anak_ke', '$jumlah_saudara', '$status_keluarga')";
+			$sql_simpan = "INSERT INTO biodata_siswa (id_login_siswa, nama_siswa, tempat_lahir_siswa, tgl_lahir_siswa, alamat_siswa, jk_siswa, agama_siswa, anak_ke, jumlah_saudara, status_keluarga) VALUES ('$id_login_siswa', '$nama_siswa', '$tempat_lahir_siswa', '$tgl_lahir_siswa', '$alamat_siswa', '$jk_siswa', '$agama_siswa', '$anak_ke', '$jumlah_saudara', '$status_keluarga')";
 			$query_simpan = mysqli_query($koneksi, $sql_simpan);
 
 			if ($query_simpan) {

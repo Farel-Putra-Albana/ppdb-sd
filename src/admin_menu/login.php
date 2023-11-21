@@ -91,28 +91,25 @@ include "inc/koneksi.php";
 <?php
 
 if (isset($_POST['btnLogin'])) {
-	//anti inject sql
-	$username = mysqli_real_escape_string($koneksi, $_POST['username']);
-	$password = mysqli_real_escape_string($koneksi, $_POST['password']);
+    //anti inject sql
+    $username = mysqli_real_escape_string($koneksi, $_POST['username']);
+    $password = mysqli_real_escape_string($koneksi, $_POST['password']);
 
-	// Encrypt the password using MD5 
-	$encryptedPassword = md5($password);
+    //query login
+    $sql_login = "SELECT * FROM login_Admin WHERE BINARY username='$username'";
+    $query_login = mysqli_query($koneksi, $sql_login);
+    $data_login = mysqli_fetch_array($query_login, MYSQLI_BOTH);
+    $jumlah_login = mysqli_num_rows($query_login);
 
-	//query login
-	$sql_login = "SELECT * FROM login_Admin WHERE BINARY username='$username' AND password='$encryptedPassword'";
-	$query_login = mysqli_query($koneksi, $sql_login);
-	$data_login = mysqli_fetch_array($query_login, MYSQLI_BOTH);
-	$jumlah_login = mysqli_num_rows($query_login);
+    if ($jumlah_login == 1 && password_verify($password, $data_login["password"])) {
+        session_start();
+        $_SESSION["ses_id"] = $data_login["id_pengguna"];
+        $_SESSION["ses_nama"] = $data_login["nama_pengguna"];
+        $_SESSION["ses_username"] = $data_login["username"];
+        $_SESSION["ses_password"] = $data_login["password"];
+        $_SESSION["ses_level"] = $data_login["level"];
 
-	if ($jumlah_login == 1) {
-		session_start();
-		$_SESSION["ses_id"] = $data_login["id_pengguna"];
-		$_SESSION["ses_nama"] = $data_login["nama_pengguna"];
-		$_SESSION["ses_username"] = $data_login["username"];
-		$_SESSION["ses_password"] = $data_login["password"];
-		$_SESSION["ses_level"] = $data_login["level"];
-
-		echo "<script>
+        echo "<script>
                 Swal.fire({
                     title: 'Login Berhasil',
                     text: '',
@@ -124,8 +121,8 @@ if (isset($_POST['btnLogin'])) {
                     }
                 })
             </script>";
-	} else {
-		echo "<script>
+    } else {
+        echo "<script>
                 Swal.fire({
                     title: 'Login Gagal',
                     text: '',
@@ -137,6 +134,6 @@ if (isset($_POST['btnLogin'])) {
                     }
                 })
             </script>";
-	}
+    }
 }
 ?>

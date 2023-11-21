@@ -247,7 +247,11 @@
         <?php
         include('../inc/koneksi.php');
 
-        $sql = "SELECT biodata_siswa.id_siswa, biodata_siswa.nik_siswa, biodata_siswa.nama_siswa, biodata_siswa.jk_siswa, hasil_seleksi.tgl_penerimaan, hasil_seleksi.jalur_penerimaan, hasil_seleksi.status_penerimaan FROM biodata_siswa LEFT JOIN hasil_seleksi ON biodata_siswa.id_siswa = hasil_seleksi.id_siswa ORDER BY biodata_siswa.nik_siswa ASC";
+        $sql = "SELECT biodata_siswa.id_siswa, login_siswa.nik, biodata_siswa.nama_siswa, biodata_siswa.jk_siswa, hasil_seleksi.tgl_penerimaan, hasil_seleksi.jalur_penerimaan, hasil_seleksi.status_penerimaan
+        FROM biodata_siswa
+        LEFT JOIN login_siswa ON biodata_siswa.id_login_siswa = login_siswa.id_login_siswa
+        LEFT JOIN hasil_seleksi ON biodata_siswa.id_siswa = hasil_seleksi.id_siswa
+        ORDER BY login_siswa.nik ASC";
 
         $query = mysqli_query($koneksi, $sql);
 
@@ -262,7 +266,7 @@
               $statusClass = 'table-warning';
             }
             echo "<tr class='$statusClass'>";
-            echo "<td><h6>" . $row['nik_siswa'] . "</h6></td>";
+            echo "<td><h6>" . $row['nik'] . "</h6></td>";
             echo "<td><h6>" . $row['nama_siswa'] . "</h6></td>";
             echo "<td><h6>" . $row['jk_siswa'] . "</h6></td>";
             if ($row['tgl_penerimaan']) {
@@ -378,7 +382,7 @@
           method: 'POST',
           url: 'searchajax.php', // Pastikan ini sesuai dengan path ke file searchajax.php
           data: {
-            nik_siswa: getName
+            nik: getName
           },
           success: function(response) {
             $("#showdata").html(response); // Isi hasil pencarian ke dalam elemen dengan id "showdata"

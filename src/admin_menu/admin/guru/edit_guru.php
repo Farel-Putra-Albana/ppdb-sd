@@ -44,7 +44,7 @@ $kompetensi_guru = isset($_POST['kompetensi_guru']) ? mysqli_real_escape_string(
 			<div class="form-group row">
 				<label class="col-sm-2 col-form-label">Tempat Lahir</label>
 				<div class="col-sm-5">
-					<input type="text" class="form-control" id="tempat_lahir_guru" name="tempat_lahir_guru" value="<?php echo $data_cek['alamat_guru']; ?>" />
+					<input type="text" class="form-control" id="tempat_lahir_guru" name="tempat_lahir_guru" value="<?php echo $data_cek['tempat_lahir_guru']; ?>" />
 				</div>
 			</div>
 

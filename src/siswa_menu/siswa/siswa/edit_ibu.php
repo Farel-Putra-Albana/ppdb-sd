@@ -16,44 +16,60 @@ if (isset($_SESSION['ses_id_login_siswa'])) {
 		$pekerjaan_ibu = mysqli_real_escape_string($koneksi, $_POST['pekerjaan_ibu']);
 		$pend_terakhir_ibu = mysqli_real_escape_string($koneksi, $_POST['pend_terakhir_ibu']);
 
-		$sql_ubah = "UPDATE biodata_ibu SET
-                        nama_ibu='$nama_ibu',
-                        alamat_ibu='$alamat_ibu',
-                        tgl_lahir_ibu='$tgl_lahir_ibu',
-                        tempat_lahir_ibu='$tempat_lahir_ibu',
-                        no_hp_ibu='$no_hp_ibu',
-                        pekerjaan_ibu='$pekerjaan_ibu',
-                        pend_terakhir_ibu='$pend_terakhir_ibu'
-                    WHERE id_ibu='$id_login_siswa'";
+		// Memperbaiki query untuk mengambil id_ibu dari tabel biodata_siswa
+		$sql_id_ibu = "SELECT biodata_ibu.id_ibu
+                        FROM biodata_siswa
+                        INNER JOIN biodata_ibu ON biodata_siswa.id_siswa = biodata_ibu.id_siswa
+                        WHERE biodata_siswa.id_login_siswa = $id_login_siswa";
 
-		$query_ubah = mysqli_query($koneksi, $sql_ubah);
+		$result_id_ibu = mysqli_query($koneksi, $sql_id_ibu);
 
-		if ($query_ubah) {
-			echo "<script>
-                Swal.fire({
-                    title: 'Ubah Data Berhasil',
-                    text: '',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        window.location = 'data.php?page=data-ibu';
-                    }
-                });
-            </script>";
+		if ($result_id_ibu) {
+			$row_id_ibu = mysqli_fetch_assoc($result_id_ibu);
+			$id_ibu = $row_id_ibu['id_ibu'];
+
+			// Memperbaiki query UPDATE untuk sesuai dengan id_ibu yang didapatkan
+			$sql_ubah = "UPDATE biodata_ibu SET
+                            nama_ibu='$nama_ibu',
+                            alamat_ibu='$alamat_ibu',
+                            tgl_lahir_ibu='$tgl_lahir_ibu',
+                            tempat_lahir_ibu='$tempat_lahir_ibu',
+                            no_hp_ibu='$no_hp_ibu',
+                            pekerjaan_ibu='$pekerjaan_ibu',
+                            pend_terakhir_ibu='$pend_terakhir_ibu'
+                        WHERE id_ibu='$id_ibu'";
+
+			$query_ubah = mysqli_query($koneksi, $sql_ubah);
+
+			if ($query_ubah) {
+				echo "<script>
+                    Swal.fire({
+                        title: 'Ubah Data Berhasil',
+                        text: '',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location = 'data.php?page=data-ibu';
+                        }
+                    });
+                </script>";
+			} else {
+				echo "<script>
+                    Swal.fire({
+                        title: 'Ubah Data Gagal',
+                        text: '" . mysqli_error($koneksi) . "',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location = 'data.php?page=edit-ibu';
+                        }
+                    });
+                </script>";
+			}
 		} else {
-			echo "<script>
-                Swal.fire({
-                    title: 'Ubah Data Gagal',
-                    text: '" . mysqli_error($koneksi) . "',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        window.location = 'data.php?page=edit-ibu';
-                    }
-                });
-            </script>";
+			die("Error dalam pengambilan data: " . mysqli_error($koneksi));
 		}
 	}
 

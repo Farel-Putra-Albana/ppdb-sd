@@ -16,44 +16,60 @@ if (isset($_SESSION['ses_id_login_siswa'])) {
         $pekerjaan_ayah = mysqli_real_escape_string($koneksi, $_POST['pekerjaan_ayah']);
         $pend_terakhir_ayah = mysqli_real_escape_string($koneksi, $_POST['pend_terakhir_ayah']);
 
-        $sql_ubah = "UPDATE biodata_ayah SET
-                        nama_ayah='$nama_ayah',
-                        alamat_ayah='$alamat_ayah',
-                        tgl_lahir_ayah='$tgl_lahir_ayah',
-                        tempat_lahir_ayah='$tempat_lahir_ayah',
-                        no_hp_ayah='$no_hp_ayah',
-                        pekerjaan_ayah='$pekerjaan_ayah',
-                        pend_terakhir_ayah='$pend_terakhir_ayah'
-                    WHERE id_ayah='$id_login_siswa'";
+        // Memperbaiki query untuk mengambil id_ayah dari tabel biodata_siswa
+        $sql_id_ayah = "SELECT biodata_ayah.id_ayah
+                        FROM biodata_siswa
+                        INNER JOIN biodata_ayah ON biodata_siswa.id_siswa = biodata_ayah.id_siswa
+                        WHERE biodata_siswa.id_login_siswa = $id_login_siswa";
 
-        $query_ubah = mysqli_query($koneksi, $sql_ubah);
+        $result_id_ayah = mysqli_query($koneksi, $sql_id_ayah);
 
-        if ($query_ubah) {
-            echo "<script>
-                Swal.fire({
-                    title: 'Ubah Data Berhasil',
-                    text: '',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        window.location = 'data.php?page=data-ayah';
-                    }
-                });
-            </script>";
+        if ($result_id_ayah) {
+            $row_id_ayah = mysqli_fetch_assoc($result_id_ayah);
+            $id_ayah = $row_id_ayah['id_ayah'];
+
+            // Memperbaiki query UPDATE untuk sesuai dengan id_ayah yang didapatkan
+            $sql_ubah = "UPDATE biodata_ayah SET
+                            nama_ayah='$nama_ayah',
+                            alamat_ayah='$alamat_ayah',
+                            tgl_lahir_ayah='$tgl_lahir_ayah',
+                            tempat_lahir_ayah='$tempat_lahir_ayah',
+                            no_hp_ayah='$no_hp_ayah',
+                            pekerjaan_ayah='$pekerjaan_ayah',
+                            pend_terakhir_ayah='$pend_terakhir_ayah'
+                        WHERE id_ayah='$id_ayah'";
+
+            $query_ubah = mysqli_query($koneksi, $sql_ubah);
+
+            if ($query_ubah) {
+                echo "<script>
+                    Swal.fire({
+                        title: 'Ubah Data Berhasil',
+                        text: '',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location = 'data.php?page=data-ayah';
+                        }
+                    });
+                </script>";
+            } else {
+                echo "<script>
+                    Swal.fire({
+                        title: 'Ubah Data Gagal',
+                        text: '" . mysqli_error($koneksi) . "',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.value) {
+                            window.location = 'data.php?page=edit-ayah';
+                        }
+                    });
+                </script>";
+            }
         } else {
-            echo "<script>
-                Swal.fire({
-                    title: 'Ubah Data Gagal',
-                    text: '" . mysqli_error($koneksi) . "',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        window.location = 'data.php?page=edit-ayah';
-                    }
-                });
-            </script>";
+            die("Error dalam pengambilan data: " . mysqli_error($koneksi));
         }
     }
 

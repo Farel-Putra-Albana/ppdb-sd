@@ -1,23 +1,69 @@
 <?php
 if (isset($_SESSION['ses_id_login_siswa'])) {
-	// Ambil ID login siswa dari sesi
 	$id_login_siswa = $_SESSION['ses_id_login_siswa'];
-
-	// Lakukan koneksi ke database dan pastikan koneksi disetel dengan benar
 	$koneksi = mysqli_connect("localhost", "root", "", "ppdb_sd13");
 
 	if (!$koneksi) {
 		die("Koneksi ke database gagal: " . mysqli_connect_error());
 	}
 
-	// Query untuk mengambil data siswa dan ibu berdasarkan ID login siswa
+	if (isset($_POST['Ubah'])) {
+		$nama_ibu = mysqli_real_escape_string($koneksi, $_POST['nama_ibu']);
+		$alamat_ibu = mysqli_real_escape_string($koneksi, $_POST['alamat_ibu']);
+		$tgl_lahir_ibu = $_POST['tgl_lahir_ibu'];
+		$tempat_lahir_ibu = mysqli_real_escape_string($koneksi, $_POST['tempat_lahir_ibu']);
+		$no_hp_ibu = $_POST['no_hp_ibu'];
+		$pekerjaan_ibu = mysqli_real_escape_string($koneksi, $_POST['pekerjaan_ibu']);
+		$pend_terakhir_ibu = mysqli_real_escape_string($koneksi, $_POST['pend_terakhir_ibu']);
+
+		$sql_ubah = "UPDATE biodata_ibu SET
+                        nama_ibu='$nama_ibu',
+                        alamat_ibu='$alamat_ibu',
+                        tgl_lahir_ibu='$tgl_lahir_ibu',
+                        tempat_lahir_ibu='$tempat_lahir_ibu',
+                        no_hp_ibu='$no_hp_ibu',
+                        pekerjaan_ibu='$pekerjaan_ibu',
+                        pend_terakhir_ibu='$pend_terakhir_ibu'
+                    WHERE id_ibu='$id_login_siswa'";
+
+		$query_ubah = mysqli_query($koneksi, $sql_ubah);
+
+		if ($query_ubah) {
+			echo "<script>
+                Swal.fire({
+                    title: 'Ubah Data Berhasil',
+                    text: '',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        window.location = 'data.php?page=data-ibu';
+                    }
+                });
+            </script>";
+		} else {
+			echo "<script>
+                Swal.fire({
+                    title: 'Ubah Data Gagal',
+                    text: '" . mysqli_error($koneksi) . "',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                }).then((result) => {
+                    if (result.value) {
+                        window.location = 'data.php?page=edit-ibu';
+                    }
+                });
+            </script>";
+		}
+	}
+
 	$sql = $koneksi->query("SELECT biodata_siswa.*, biodata_ibu.*
         FROM biodata_siswa
         INNER JOIN biodata_ibu ON biodata_siswa.id_siswa = biodata_ibu.id_siswa
         WHERE biodata_siswa.id_login_siswa = $id_login_siswa");
 
 	if ($sql) {
-		$data_cek = $sql->fetch_assoc(); // Ambil data dari hasil kueri
+		$data_cek = $sql->fetch_assoc();
 	} else {
 		die("Error dalam pengambilan data: " . mysqli_error($koneksi));
 	}
@@ -90,79 +136,3 @@ if (isset($_SESSION['ses_id_login_siswa'])) {
 		</div>
 	</form>
 </div>
-
-<?php
-// Periksa apakah pengguna sudah login
-if (isset($_SESSION['ses_id_login_siswa'])) {
-	$id_login_siswa = $_SESSION['ses_id_login_siswa'];
-	$koneksi = mysqli_connect("localhost", "root", "", "ppdb_sd13");
-
-	if (!$koneksi) {
-		die("Koneksi ke database gagal: " . mysqli_connect_error());
-	}
-
-	// Proses jika tombol "Ubah" ditekan
-	if (isset($_POST['Ubah'])) {
-		// Perbarui data ibu berdasarkan id_login_siswa
-		$nama_ibu = mysqli_real_escape_string($koneksi, $_POST['nama_ibu']);
-		$alamat_ibu = mysqli_real_escape_string($koneksi, $_POST['alamat_ibu']);
-		$tgl_lahir_ibu = $_POST['tgl_lahir_ibu'];
-		$tempat_lahir_ibu = mysqli_real_escape_string($koneksi, $_POST['tempat_lahir_ibu']);
-		$no_hp_ibu = $_POST['no_hp_ibu'];
-		$pekerjaan_ibu = $_POST['pekerjaan_ibu'];
-		$pend_terakhir_ibu = $_POST['pend_terakhir_ibu'];
-
-		$sql_ubah = "UPDATE biodata_ibu SET
-                        nama_ibu='$nama_ibu',
-                        alamat_ibu='$alamat_ibu',
-                        tgl_lahir_ibu='$tgl_lahir_ibu',
-                        tempat_lahir_ibu='$tempat_lahir_ibu',
-                        no_hp_ibu='$no_hp_ibu',
-                        pekerjaan_ibu='$pekerjaan_ibu',
-                        pend_terakhir_ibu='$pend_terakhir_ibu'
-                    WHERE id_siswa='$id_login_siswa'";
-
-		$query_ubah = mysqli_query($koneksi, $sql_ubah);
-
-		if ($query_ubah) {
-			echo "<script>
-                Swal.fire({
-                    title: 'Ubah Data Berhasil',
-                    text: '',
-                    icon: 'success',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        window.location = 'data.php?page=data-ibu';
-                    }
-                });
-            </script>";
-		} else {
-			echo "<script>
-                Swal.fire({
-                    title: 'Ubah Data Gagal',
-                    text: '',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                }).then((result) => {
-                    if (result.value) {
-                        window.location = 'data.php?page=edit-ibu';
-                    }
-                });
-            </script>";
-		}
-	}
-
-	// Ambil data ibu dari database untuk ditampilkan dalam formulir
-	$sql = $koneksi->query("SELECT biodata_siswa.*, biodata_ibu.*
-        FROM biodata_siswa
-        INNER JOIN biodata_ibu ON biodata_siswa.id_siswa = biodata_ibu.id_siswa
-        WHERE biodata_siswa.id_login_siswa = $id_login_siswa");
-
-	if ($sql) {
-		$data_cek = $sql->fetch_assoc();
-	} else {
-		die("Error dalam pengambilan data: " . mysqli_error($koneksi));
-	}
-}
-?>

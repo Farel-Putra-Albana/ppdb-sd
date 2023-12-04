@@ -1,22 +1,33 @@
 <?php
-
 if (isset($_GET['kode'])) {
-	$sql_cek = "SELECT * FROM data_guru WHERE id_guru='" . $_GET['kode'] . "'";
-	$query_cek = mysqli_query($koneksi, $sql_cek);
-	$data_cek = mysqli_fetch_array($query_cek, MYSQLI_BOTH);
+    $sql_cek = "SELECT * FROM data_guru WHERE id_guru='" . $_GET['kode'] . "'";
+    $query_cek = mysqli_query($koneksi, $sql_cek);
+    $data_cek = mysqli_fetch_array($query_cek, MYSQLI_BOTH);
 }
+
+$nip_guru = isset($_POST['nip_guru']) ? mysqli_real_escape_string($koneksi, $_POST['nip_guru']) : '';
+$nama_guru = isset($_POST['nama_guru']) ? mysqli_real_escape_string($koneksi, $_POST['nama_guru']) : '';
+$tempat_lahir_guru = isset($_POST['tempat_lahir_guru']) ? mysqli_real_escape_string($koneksi, $_POST['tempat_lahir_guru']) : '';
+$tgl_lahir_guru = isset($_POST['tgl_lahir_guru']) ? $_POST['tgl_lahir_guru'] : '';
+$alamat_guru = isset($_POST['alamat_guru']) ? mysqli_real_escape_string($koneksi, $_POST['alamat_guru']) : '';
+$jk_guru = isset($_POST['jk_guru']) ? mysqli_real_escape_string($koneksi, $_POST['jk_guru']) : '';
+$no_hp_guru = isset($_POST['no_hp_guru']) ? $_POST['no_hp_guru'] : '';
+$status_kepegawaian = isset($_POST['status_kepegawaian']) ? mysqli_real_escape_string($koneksi, $_POST['status_kepegawaian']) : '';
+$jurusan_guru = isset($_POST['jurusan_guru']) ? $_POST['jurusan_guru'] : '';
+$kompetensi_guru = isset($_POST['kompetensi_guru']) ? mysqli_real_escape_string($koneksi, $_POST['kompetensi_guru']) : '';
+
 ?>
 
 <div class="card card-success">
-	<div class="card-header">
-		<h3 class="card-title">
-			<i class="fa fa-edit"></i> Ubah Data Guru
-		</h3>
-	</div>
-	<form action="" method="post" enctype="multipart/form-data">
-		<div class="card-body">
+    <div class="card-header">
+        <h3 class="card-title">
+            <i class="fa fa-edit"></i> Ubah Data Guru
+        </h3>
+    </div>
+    <form action="" method="post" enctype="multipart/form-data">
+        <div class="card-body">
 
-			<div class="form-group row">
+		<div class="form-group row">
 				<label class="col-sm-2 col-form-label">NIP</label>
 				<div class="col-sm-5">
 					<input type="text" class="form-control" id="nip_guru" name="nip_guru" value="<?php echo $data_cek['nip_guru']; ?>" />
@@ -125,86 +136,76 @@ if (isset($_GET['kode'])) {
 					</p>
 				</div>
 			</div>
-		</div>
 
-		<div class="card-footer">
-			<input type="submit" name="Ubah" value="Simpan" class="btn btn-success">
-			<a href="?page=data-guru" title="Kembali" class="btn btn-secondary">Batal</a>
-		</div>
-	</form>
+        </div>
+
+        <div class="card-footer">
+            <input type="submit" name="Ubah" value="Simpan" class="btn btn-success">
+            <a href="?page=data-guru" title="Kembali" class="btn btn-secondary">Batal</a>
+        </div>
+    </form>
 </div>
 
 <?php
 if (isset($_POST['Ubah'])) {
-	// Periksa apakah ada file foto yang diunggah
-	if (!empty($_FILES['foto_guru']['tmp_name'])) {
-			$foto = $data_cek['foto_guru'];
-			
-			// Hapus file foto lama
-			if (file_exists("foto/$foto")) {
-					unlink("foto/$foto");
-			}
-			
-			$nip_guru = mysqli_real_escape_string($koneksi, $_POST['nip_guru']);
-			$nama_guru = mysqli_real_escape_string($koneksi, $_POST['nama_guru']);
-			$tempat_lahir_guru = mysqli_real_escape_string($koneksi, $_POST['tempat_lahir_ayah']);
-			$tgl_lahir_guru = $_POST['tgl_lahir_guru'];
-			$alamat_guru = mysqli_real_escape_string($koneksi, $_POST['alamat_guru']);
-			$jk_guru = mysqli_real_escape_string($koneksi, $_POST['jk_guru']);
-			$no_hp_guru = $_POST['no_hp_guru'];
-			$status_kepegawaian = mysqli_real_escape_string($koneksi, $_POST['status_kepegawaian']);
-			$jurusan_guru = $_POST['jurusan_guru'];
-			$kompetensi_guru = mysqli_real_escape_string($koneksi, $_POST['kompetensi_guru']);
-			
+    // Periksa apakah ada file foto yang diunggah
+    if (!empty($_FILES['foto_guru']['tmp_name'])) {
+        // Your file upload handling code here
 
-			// Perbarui data guru dengan foto yang baru
-			$sql_ubah = "UPDATE data_guru SET
-												nip_guru='$nip_guru',
-												nama_guru='$nama_guru',
-												tempat_lahir_guru='$tempat_lahir_guru',
+        // Hapus file foto lama
+        $foto = $data_cek['foto_guru'];
+        if (file_exists("foto/$foto")) {
+            unlink("foto/$foto");
+        }
+
+        // Perbarui data guru dengan foto yang baru
+        $sql_ubah = "UPDATE data_guru SET
+                        nip_guru='$nip_guru',
+                        nama_guru='$nama_guru',
+                        tempat_lahir_guru='$tempat_lahir_guru',
                         tgl_lahir_guru='$tgl_lahir_guru',
                         alamat_guru='$alamat_guru',
-												jk_guru='$jk_guru',
+                        jk_guru='$jk_guru',
                         no_hp_guru='$no_hp_guru',
                         status_kepegawaian='$status_kepegawaian',
-												jurusan_guru='$jurusan_guru',
+                        jurusan_guru='$jurusan_guru',
                         kompetensi_guru='$kompetensi_guru'
-                    WHERE id_siswa='$id_login_siswa'";
-	} else {
-			// Jika tidak ada file foto yang diunggah, perbarui data guru tanpa mengubah foto
-			$sql_ubah = "UPDATE data_guru SET
-												nip_guru='$nip_guru',
-												nama_guru='$nama_guru',
+                    WHERE id_guru='" . $_GET['kode'] . "'";
+    } else {
+        // Jika tidak ada file foto yang diunggah, perbarui data guru tanpa mengubah foto
+        $sql_ubah = "UPDATE data_guru SET
+                        nip_guru='$nip_guru',
+                        nama_guru='$nama_guru',
                         alamat_guru='$alamat_guru',
                         tgl_lahir_guru='$tgl_lahir_guru',
                         tempat_lahir_guru='$tempat_lahir_guru',
-												jk_guru='$jk_guru',
+                        jk_guru='$jk_guru',
                         no_hp_guru='$no_hp_guru',
                         status_kepegawaian='$status_kepegawaian',
-												jurusan_guru='$jurusan_guru',
+                        jurusan_guru='$jurusan_guru',
                         kompetensi_guru='$kompetensi_guru'
-                    WHERE id_siswa='$id_login_siswa'";
-	}
+                    WHERE id_guru='" . $_GET['kode'] . "'";
+    }
 
-	// Eksekusi query UPDATE
-	$query_ubah = mysqli_query($koneksi, $sql_ubah);
+    // Eksekusi query UPDATE
+    $query_ubah = mysqli_query($koneksi, $sql_ubah);
 
-	if ($query_ubah) {
-			echo "<script>
-					Swal.fire({title: 'Ubah Data Berhasil', text: '', icon: 'success', confirmButtonText: 'OK'
-					}).then((result) => {
-							if (result.value) {
-									window.location = 'data.php?page=data-guru';
-							}
-					})</script>";
-	} else {
-			echo "<script>
-					Swal.fire({title: 'Ubah Data Gagal', text: '', icon: 'error', confirmButtonText: 'OK'
-					}).then((result) => {
-							if (result.value) {
-									window.location = 'data.php?page=data-guru';
-							}
-					})</script>";
-	}
+    if ($query_ubah) {
+        echo "<script>
+                Swal.fire({title: 'Ubah Data Berhasil', text: '', icon: 'success', confirmButtonText: 'OK'
+                }).then((result) => {
+                        if (result.value) {
+                                window.location = 'data.php?page=data-guru';
+                        }
+                })</script>";
+    } else {
+        echo "<script>
+                Swal.fire({title: 'Ubah Data Gagal', text: '', icon: 'error', confirmButtonText: 'OK'
+                }).then((result) => {
+                        if (result.value) {
+                                window.location = 'data.php?page=data-guru';
+                        }
+                })</script>";
+    }
 }
 ?>

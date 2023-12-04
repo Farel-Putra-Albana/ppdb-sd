@@ -1,11 +1,9 @@
 <?php
 
 if (isset($_GET['kode'])) {
-    $sql_cek = "SELECT login_siswa.nik, biodata_siswa.*, biodata_ayah.*, biodata_ibu.*, berkas.pas_foto 
+    $sql_cek = "SELECT login_siswa.nik, biodata_siswa.*, berkas.pas_foto 
     FROM login_siswa
     LEFT JOIN biodata_siswa ON login_siswa.id_login_siswa = biodata_siswa.id_login_siswa
-    LEFT JOIN biodata_ayah ON biodata_siswa.id_siswa = biodata_ayah.id_siswa
-    LEFT JOIN biodata_ibu ON biodata_siswa.id_siswa = biodata_ibu.id_siswa
     LEFT JOIN berkas ON biodata_siswa.id_siswa = berkas.id_siswa WHERE biodata_siswa.id_siswa='" . $_GET['kode'] . "'";
     $query_cek = mysqli_query($koneksi, $sql_cek);
     $data_cek = mysqli_fetch_array($query_cek, MYSQLI_BOTH);
@@ -34,77 +32,77 @@ if (isset($_GET['kode'])) {
                                     </td>
                                 </tr>
                                 <tr>
-							<td style="width: 180px">
-								<b>Nama Siswa</b>
-							</td>
-							<td>:
-								<?php echo $data_cek['nama_siswa']; ?>
-							</td>
-						</tr>
-						<tr>
-							<td style="width: 180px">
-								<b>Tempat Lahir</b>
-							</td>
-							<td>:
-								<?php echo $data_cek['tempat_lahir_siswa']; ?>
-							</td>
-						</tr>
-						<tr>
-							<td style="width: 180px">
-								<b>Tanggal Lahir</b>
-							</td>
-							<td>:
-								<?php echo $data_cek['tgl_lahir_siswa']; ?>
-							</td>
-						</tr>
-						<tr>
-							<td style="width: 180px">
-								<b>Alamat</b>
-							</td>
-							<td>:
-								<?php echo $data_cek['alamat_siswa']; ?>
-							</td>
-						</tr>
-						<tr>
-							<td style="width: 180px">
-								<b>Jenis Kelamin</b>
-							</td>
-							<td>:
-								<?php echo $data_cek['jk_siswa']; ?>
-							</td>
-						</tr>
-						<tr>
-							<td style="width: 180px">
-								<b>Agama</b>
-							</td>
-							<td>:
-								<?php echo $data_cek['agama_siswa']; ?>
-							</td>
-						</tr>
-						<tr>
-							<td style="width: 180px">
-								<b>Anak Ke-</b>
-							</td>
-							<td>:
-								<?php echo $data_cek['anak_ke']; ?>
-							</td>
-						</tr>
-						<tr>
-							<td style="width: 180px">
-								<b>Jumlah Saudara</b>
-							</td>
-							<td>:
-								<?php echo $data_cek['jumlah_saudara']; ?>
-							</td>
-						</tr>
-						<tr>
-							<td style="width: 180px">
-								<b>Status</b>
-							</td>
-							<td>:
-								<?php echo $data_cek['status_keluarga']; ?>
-							</td>
-						</tr>
+                                    <td style="width: 180px">
+                                        <b>Nama Siswa</b>
+                                    </td>
+                                    <td>:
+                                        <?php echo $data_cek['nama_siswa']; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 180px">
+                                        <b>Tempat Lahir</b>
+                                    </td>
+                                    <td>:
+                                        <?php echo $data_cek['tempat_lahir_siswa']; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 180px">
+                                        <b>Tanggal Lahir</b>
+                                    </td>
+                                    <td>:
+                                        <?php echo $data_cek['tgl_lahir_siswa']; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 180px">
+                                        <b>Alamat</b>
+                                    </td>
+                                    <td>:
+                                        <?php echo $data_cek['alamat_siswa']; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 180px">
+                                        <b>Jenis Kelamin</b>
+                                    </td>
+                                    <td>:
+                                        <?php echo $data_cek['jk_siswa']; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 180px">
+                                        <b>Agama</b>
+                                    </td>
+                                    <td>:
+                                        <?php echo $data_cek['agama_siswa']; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 180px">
+                                        <b>Anak Ke-</b>
+                                    </td>
+                                    <td>:
+                                        <?php echo $data_cek['anak_ke']; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 180px">
+                                        <b>Jumlah Saudara</b>
+                                    </td>
+                                    <td>:
+                                        <?php echo $data_cek['jumlah_saudara']; ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 180px">
+                                        <b>Status</b>
+                                    </td>
+                                    <td>:
+                                        <?php echo $data_cek['status_keluarga']; ?>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                         <div class="card-footer">
@@ -126,13 +124,19 @@ if (isset($_GET['kode'])) {
                         </div>
                     </div>
                     <div class="card-body">
-                        <div class="text-center">
-                            <img src="/ppdb-sd/src/siswa_menu/foto/<?php echo $data_cek['pas_foto']; ?>" width="280px" />
-                        </div>
-                        <h3 class="profile-username text-center">
-                            <b class="text-danger">NAMA SISWA</b> <br>
-                            <?php echo $data_cek['nama_siswa']; ?>
-                        </h3>
+                        <?php if ($data_cek['pas_foto']) : ?>
+                            <div class="text-center">
+                                <img src="/ppdb-sd/src/siswa_menu/foto/<?php echo $data_cek['pas_foto']; ?>" width="280px" />
+                            </div>
+                            <h3 class="profile-username text-center">
+                                <b class="text-danger">NAMA SISWA</b> <br>
+                                <?php echo $data_cek['nama_siswa']; ?>
+                            </h3>
+                        <?php else : ?>
+                            <div class="text-center text-danger">
+                                Pas Foto Siswa Belum di Upload
+                            </div>
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>

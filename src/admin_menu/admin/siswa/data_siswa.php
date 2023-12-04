@@ -51,17 +51,14 @@
 
                         <?php
                         $no = 1;
-                        $sql = $koneksi->query("SELECT login_siswa.nik, biodata_siswa.*, biodata_ayah.*, biodata_ibu.*, berkas.pas_foto 
+                        $sql = $koneksi->query("SELECT login_siswa.nik, biodata_siswa.*, berkas.pas_foto 
                             FROM login_siswa
                             LEFT JOIN biodata_siswa ON login_siswa.id_login_siswa = biodata_siswa.id_login_siswa
-                            LEFT JOIN biodata_ayah ON biodata_siswa.id_siswa = biodata_ayah.id_siswa
-                            LEFT JOIN biodata_ibu ON biodata_siswa.id_siswa = biodata_ibu.id_siswa
                             LEFT JOIN berkas ON biodata_siswa.id_siswa = berkas.id_siswa
-                            WHERE biodata_siswa.id_siswa IS NOT NULL");  // Menambahkan kondisi WHERE untuk memeriksa apakah data biodata_siswa sudah ada
+                            WHERE biodata_siswa.id_siswa IS NOT NULL");
 
                         while ($data = $sql->fetch_assoc()) {
                         ?>
-
                             <tr>
                                 <td>
                                     <?php echo $no++; ?>
@@ -82,45 +79,89 @@
                                     <?php echo $data['jk_siswa']; ?>
                                 </td>
 
-                                <div class="tabel-aksi">
-                                    <!-- Biodata Ayah -->
-                                    <td>
-                                        <a href="?page=view-ayah&kode=<?php echo $data['id_ayah']; ?>" title="Detail" class="btn btn-info btn-sm">
+                                <!-- Biodata Ayah -->
+                                <!-- Biodata Ayah -->
+                                <td>
+                                    <?php
+                                    // Query untuk mendapatkan data dari login_siswa, biodata_siswa, dan biodata_ayah
+                                    $queryDataAyah = $koneksi->query("SELECT login_siswa.nik, biodata_siswa.*, biodata_ayah.* 
+                                        FROM login_siswa
+                                        LEFT JOIN biodata_siswa ON login_siswa.id_login_siswa = biodata_siswa.id_login_siswa
+                                        LEFT JOIN biodata_ayah ON biodata_siswa.id_siswa = biodata_ayah.id_siswa 
+                                        WHERE biodata_siswa.id_siswa = '{$data['id_siswa']}'");
+                                    $dataAyah = $queryDataAyah->fetch_assoc();
+
+                                    // Periksa apakah data tersedia
+                                    if ($dataAyah) :
+                                    ?>
+                                        <a href="?page=view-ayah&kode=<?php echo $dataAyah['id_ayah']; ?>" title="Detail Ayah" class="btn btn-info btn-sm">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        <a href="?page=edit-ayah&kode=<?php echo $data['id_ayah']; ?>" title="Ubah" class="btn btn-success btn-sm">
+                                        <a href="?page=edit-ayah&kode=<?php echo $dataAyah['id_ayah']; ?>" title="Ubah Ayah" class="btn btn-success btn-sm">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                    </td>
-                                    <!-- Biodata Ibu -->
-                                    <td>
-                                        <a href="?page=view-ibu&kode=<?php echo $data['id_ibu']; ?>" title="Detail" class="btn btn-info btn-sm">
+                                    <?php else : ?>
+                                        <span>Data Ayah Tidak Tersedia</span>
+                                    <?php endif; ?>
+                                </td>
+
+                                <!-- Biodata Ibu -->
+                                <td>
+                                    <?php
+                                    // Query untuk mendapatkan data dari login_siswa, biodata_siswa, dan biodata_ayah
+                                    $queryDataIbu = $koneksi->query("SELECT login_siswa.nik, biodata_siswa.*, biodata_ibu.* 
+                                        FROM login_siswa
+                                        LEFT JOIN biodata_siswa ON login_siswa.id_login_siswa = biodata_siswa.id_login_siswa
+                                        LEFT JOIN biodata_ibu ON biodata_siswa.id_siswa = biodata_ibu.id_siswa 
+                                        WHERE biodata_siswa.id_siswa = '{$data['id_siswa']}'");
+                                    $dataIbu = $queryDataIbu->fetch_assoc();
+
+                                    // Periksa apakah data tersedia
+                                    if ($dataIbu) :
+                                    ?>
+                                        <a href="?page=view-ibu&kode=<?php echo $dataIbu['id_ibu']; ?>" title="Detail Ibu" class="btn btn-info btn-sm">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        <a href="?page=edit-ibu&kode=<?php echo $data['id_ibu']; ?>" title="Ubah" class="btn btn-success btn-sm">
+                                        <a href="?page=edit-ibu&kode=<?php echo $dataIbu['id_ibu']; ?>" title="Ubah Ibu" class="btn btn-success btn-sm">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                    </td>
-                                    <!-- Aksi Biodata -->
-                                    <td>
-                                        <a href="?page=view-siswa&kode=<?php echo $data['id_siswa']; ?>" title="Detail" class="btn btn-info btn-sm">
+                                    <?php else : ?>
+                                        <span>Data Ibu Tidak Tersedia</span>
+                                    <?php endif; ?>
+                                </td>
+
+                                <!-- Aksi Biodata Siswa -->
+                                <td>
+                                    <?php
+                                    // Query untuk mendapatkan data login_siswa.nik, biodata_siswa.*, berkas.pas_foto
+                                    $queryBiodata = $koneksi->query("SELECT login_siswa.nik, biodata_siswa.*, berkas.pas_foto 
+                                                FROM login_siswa
+                                                LEFT JOIN biodata_siswa ON login_siswa.id_login_siswa = biodata_siswa.id_login_siswa
+                                                LEFT JOIN berkas ON biodata_siswa.id_siswa = berkas.id_siswa 
+                                                WHERE biodata_siswa.id_siswa = '{$data['id_siswa']}'");
+                                    $dataBiodata = $queryBiodata->fetch_assoc();
+
+                                    if ($dataBiodata) : ?>
+                                        <a href="?page=view-siswa&kode=<?php echo $dataBiodata['id_siswa']; ?>" title="Detail Siswa" class="btn btn-info btn-sm">
                                             <i class="fa fa-eye"></i>
                                         </a>
-                                        <a href="?page=edit-siswa&kode=<?php echo $data['id_siswa']; ?>" title="Ubah" class="btn btn-success btn-sm">
+                                        <a href="?page=edit-siswa&kode=<?php echo $dataBiodata['id_siswa']; ?>" title="Ubah Siswa" class="btn btn-success btn-sm">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <a href="?page=del-siswa&kode=<?php echo $data['id_siswa']; ?>" onclick="return confirm('Apakah anda yakin hapus data ini ?')" title="Hapus" class="btn btn-danger btn-sm">
+                                        <a href="?page=del-siswa&kode=<?php echo $dataBiodata['id_siswa']; ?>" onclick="return confirm('Apakah anda yakin hapus data ini ?')" title="Hapus Siswa" class="btn btn-danger btn-sm">
                                             <i class="fa fa-trash"></i>
                                         </a>
-                                    </td>
-                                </div>
-                            </tr>
+                                    <?php else : ?>
+                                        <span>Data Siswa Tidak Tersedia</span>
+                                    <?php endif; ?>
+                                </td>
 
+
+                            </tr>
                         <?php
                         }
                         ?>
                     </tbody>
-                    </tfoot>
                 </table>
             </div>
         </div>
